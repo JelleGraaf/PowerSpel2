@@ -18,6 +18,7 @@ param (
     [string]$Game = "Pentest"
 )
 
+#region initialization
 # Import general helper functions.
 $GeneralHelpers = Get-ChildItem -Path $PSScriptRoot\Helpers\
 foreach ($GeneralHelper in $GeneralHelpers) {
@@ -30,7 +31,25 @@ foreach ($GameHelper in $GameHelpers) {
     . $GameHelper.fullname
 }
 
+# Force console colors
+$console = $host.UI.RawUI
+$console.ForegroundColor = "white"
+$console.BackgroundColor = "black"
+
+$RoomFolder = "$PSScriptRoot\Games\$Game\Rooms\"
+
+#endregion initialization
+
+#region main game
 # Start the game with the splash screen
 Write-StartScreen
 
 Write-Host "Main game!" -ForegroundColor Green
+
+#endregion main game
+
+
+#region endgame
+
+
+#endregion endgame
