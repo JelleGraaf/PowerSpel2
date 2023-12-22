@@ -26,7 +26,7 @@ foreach ($GeneralHelper in $GeneralHelpers) {
 }
 
 # Import game mode helper functions
-$GameHelpers = Get-ChildItem -Path $PSScriptRoot\Games\$Game\
+$GameHelpers = Get-ChildItem -Path $PSScriptRoot\Games\$Game\ -File
 foreach ($GameHelper in $GameHelpers) {
     . $GameHelper.fullname
 }
@@ -36,8 +36,16 @@ $console = $host.UI.RawUI
 $console.ForegroundColor = "white"
 $console.BackgroundColor = "black"
 
-$RoomFolder = "$PSScriptRoot\Games\$Game\Rooms\"
-
+# Import map 
+$Rooms = Get-ChildItem -Path "$PSScriptRoot\Games\$Game\Rooms\" -File -Recurse
+# $Rooms = Get-ChildItem -Path "C:\git\PowerSpel2\Games\$Game\Rooms\" -File -Recurse ## LOCAL DEV
+$Map = @{}
+foreach ($Room in $Rooms) {
+    $RoomCoordinates = $Room.Name.Substring(4).Split('.')[0]
+    Write-Host "Processing room $RoomCoordinates..."
+    $Map.$RoomCoordinates = Get-Content $Room | ConvertFrom-Json
+}
+$CurrentRoom = "505000"
 #endregion initialization
 
 #region main game
@@ -45,6 +53,10 @@ $RoomFolder = "$PSScriptRoot\Games\$Game\Rooms\"
 Write-StartScreen
 
 Write-Host "Main game!" -ForegroundColor Green
+while ($CurrentRoom -ne "495000") { # The number is the exit room, after which the game ends.
+    Show-Room -Coordinates $CurrentRoom # RESUME HERE
+}
+
 
 #endregion main game
 
