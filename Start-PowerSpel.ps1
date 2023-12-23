@@ -49,6 +49,17 @@ foreach ($Room in $Rooms) {
     $Map.$RoomCoordinates = Get-Content $Room | ConvertFrom-Json
 }
 [int]$CurrentRoom = 505000
+
+# Prepare global variables
+$DirectionTable = @{
+    N = "to the north"
+    E = "to the east"
+    S = "to the south"
+    W = "to the west"
+    U = "up"
+    D = "down"
+}
+
 #endregion initialization
 
 
@@ -71,10 +82,11 @@ while ($CurrentRoom -ne "495000") {
     $Action = $null
     if (@("N", "E", "S", "W", "U", "D") -contains $PlayerInput) {
         # Valid moves get processed here.
+        $Action = "You move $($DirectionTable.$PlayerInput)."
         New-Move -Direction $PlayerInput
-        $Action = "You move $PlayerInput."
     }
-    elseif (@("test") -contains $PlayerInput) {
+    elseif (@(0..9) -contains $PlayerInput) {
+        # Menu actions get processed here.
         $Action = "Action: $PlayerInput."
     }
     else {

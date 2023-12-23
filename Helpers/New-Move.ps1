@@ -12,12 +12,23 @@ function New-Move {
         [string]$Direction
     )
 
+    write-host "Currentroom: $Currentroom" -ForegroundColor Magenta
     switch ($Direction) {
-        N { $Script:CurrentRoom +=   100 }
-        S { $Script:CurrentRoom -=   100 }
-        E { $Script:CurrentRoom += 10000 }
-        W { $Script:CurrentRoom -= 10000 }
-        U { $Script:CurrentRoom +=     1 }
-        D { $Script:CurrentRoom -=     1 }
+        N { [int]$DestinationRoom = $CurrentRoom +   100 }
+        S { [int]$DestinationRoom = $CurrentRoom -   100 }
+        E { [int]$DestinationRoom = $CurrentRoom + 10000 }
+        W { [int]$DestinationRoom = $CurrentRoom - 10000 }
+        U { [int]$DestinationRoom = $CurrentRoom +     1 }
+        D { [int]$DestinationRoom = $CurrentRoom -     1 }
+    }
+
+    Write-Host "DestinationRoom $DestinationRoom" -ForegroundColor Magenta
+    if ($Map.Keys -contains $Destinationroom) {
+        $Script:CurrentRoom = $DestinationRoom
+        write-host "Adjusted Currentroom: $Currentroom" -ForegroundColor Magenta
+
+    }
+    else {
+        $Script:Action = "You can't go that way. Try again."
     }
 }
