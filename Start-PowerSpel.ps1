@@ -9,8 +9,8 @@
     Choose the game mode here. Defaults to Pentest, the original PowerSpel.
 
 .NOTES
-    Written by Jelle the Graaf (The Netherlands).
-    Github: https://github.com/JelleGraaf/PowerSpel2
+    Written by:       Jelle the Graaf (The Netherlands).
+    Source on Github: https://github.com/JelleGraaf/PowerSpel2
 #>
 
 param (
@@ -18,7 +18,11 @@ param (
     [string]$Game = "Pentest"
 )
 
-#region initialization
+
+#########################################
+#region initialization                  #
+#########################################
+
 # Import general helper functions.
 $GeneralHelpers = Get-ChildItem -Path $PSScriptRoot\Helpers\
 foreach ($GeneralHelper in $GeneralHelpers) {
@@ -42,19 +46,24 @@ $Rooms = Get-ChildItem -Path "$PSScriptRoot\Games\$Game\Rooms\" -File -Recurse
 $Map = @{}
 foreach ($Room in $Rooms) {
     $RoomCoordinates = $Room.Name.Substring(4).Split('.')[0]
-    Write-Host "Processing room $RoomCoordinates..."
     $Map.$RoomCoordinates = Get-Content $Room | ConvertFrom-Json
 }
 $CurrentRoom = "505000"
 #endregion initialization
 
-#region main game
+
+#########################################
+#region MAIN GAME                       #
+#########################################
+
 # Start the game with the splash screen
 Write-StartScreen
 
 Write-Host "Main game!" -ForegroundColor Green
-while ($CurrentRoom -ne "495000") { # The number is the exit room, after which the game ends.
-    Show-Room -Coordinates $CurrentRoom # RESUME HERE
+while ($CurrentRoom -ne "495000") { # The number is the game exit room, after which the game ends.
+    Clear-Host
+    Show-Room
+    $Input = Read-Host "What would you like to do?"
 }
 
 
