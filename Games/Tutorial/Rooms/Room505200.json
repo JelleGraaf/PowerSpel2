@@ -2,7 +2,7 @@
     "RoomTitle": "Room title",
     "RoomDescription": "This is the longer description of what is inside the room.",
     "Exits": [
-        "North",
+        "East",
         "South"
     ]
 
