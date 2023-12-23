@@ -14,7 +14,7 @@
 #>
 
 param (
-    [ValidateSet("Tutorial","Pentest")]
+    [ValidateSet("Tutorial", "Pentest")]
     [string]$Game = "Pentest"
 )
 
@@ -48,7 +48,7 @@ foreach ($Room in $Rooms) {
     $RoomCoordinates = $Room.Name.Substring(4).Split('.')[0]
     $Map.$RoomCoordinates = Get-Content $Room | ConvertFrom-Json
 }
-$CurrentRoom = "505000"
+[int]$CurrentRoom = 505000
 #endregion initialization
 
 
@@ -59,11 +59,29 @@ $CurrentRoom = "505000"
 # Start the game with the splash screen
 Write-StartScreen
 
-Write-Host "Main game!" -ForegroundColor Green
-while ($CurrentRoom -ne "495000") { # The number is the game exit room, after which the game ends.
+# Main game loop
+while ($CurrentRoom -ne "495000") {
+    # The number is the game exit room, after which the game ends.
     Clear-Host
+    
     Show-Room
-    $Input = Read-Host "What would you like to do?"
+    
+    $PlayerInput = Read-Host "What would you like to do?"
+    
+    $Action = $null
+    if (@("N", "E", "S", "W", "U", "D") -contains $PlayerInput) {
+        # Valid moves get processed here.
+        New-Move -Direction $PlayerInput
+        $Action = "You move $PlayerInput."
+    }
+    elseif (@("test") -contains $PlayerInput) {
+        $Action = "Action: $PlayerInput."
+    }
+    else {
+        # Invalid input displays a message saying so.
+        $Action = "Invalid input, try again."
+    }
+    
 }
 
 

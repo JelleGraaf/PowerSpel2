@@ -8,16 +8,19 @@ function Show-Room {
     Write-Host "DEV: Currentroom: $CurrentRoom." -ForegroundColor Magenta
 
     # Write previous action to screen
-    #Write-WordWrapHost $Input -Color Green
+    if ($Action) {
+        Write-WordWrapHost $Action -Color Green
+        Write-Host
+    }
 
     # Write room title to screen.
-    Write-Host "[$($Map.$CurrentRoom.RoomTitle)]" -BackgroundColor White -ForegroundColor Black
+    Write-Host "[$($Map."$CurrentRoom".RoomTitle)]" -BackgroundColor White -ForegroundColor Black
     Write-Host
     
     # Write room description to screen.
-    Write-WordWrapHost "$($Map.$CurrentRoom.RoomDescription)"
+    Write-WordWrapHost "$($Map."$CurrentRoom".RoomDescription)"
 
     # Write exits to screen.
-    Write-Host "[ Exits: $($Map.$CurrentRoom.exits) ]"
+    Write-Host "[ Exits: $($Map."$CurrentRoom".exits) ]"
     Write-Host
 }
