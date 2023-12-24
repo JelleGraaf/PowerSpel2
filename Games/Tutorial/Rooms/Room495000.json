@@ -1,0 +1,8 @@
+{
+    "RoomTitle": "Exit",
+    "RoomDescription": "This room is the exit of the game. If you see this, the exit sequence didn't trigger.",
+    "Exits": [
+        "East"
+    ]
+
+}
