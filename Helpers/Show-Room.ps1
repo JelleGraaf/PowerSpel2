@@ -25,14 +25,15 @@ function Show-Room {
     Write-WordWrapHost "$($Map."$($State.CurrentRoom)".RoomDescription)"
 
     # Write exits to screen.
-    Write-Host "[ Exits: $($Map."$($State.CurrentRoom)".exits) ]"
+    Write-Host "[ Exits: $($Map."$($State.CurrentRoom)".Exits) ]"
     Write-Host
 
     # Write room items to screen.
-    foreach ($Item in $Map."$($State.CurrentRoom)".Items) {
-        #Write-Host "An $Item is here." -ForegroundColor Cyan
-        Write-Host "Item: $Item" -ForegroundColor Cyan
-        Write-Host "Description: $($Item.ItemDescription)" -ForegroundColor Cyan
+    $Items = @{}
+    $Map."$($State.CurrentRoom)".Items.psobject.properties | ForEach-Object { $Items[$_.Name] = $_.Value }
+
+    foreach ($Item in $Items.Keys) {
+        Write-Host $Items.$Item.ItemDescription -ForegroundColor Cyan
     }
     Write-Host
 }

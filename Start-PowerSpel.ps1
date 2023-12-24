@@ -46,7 +46,7 @@ $Rooms = Get-ChildItem -Path "$PSScriptRoot\Games\$Game\Rooms\" -File -Recurse
 $Map = @{}
 foreach ($Room in $Rooms) {
     $RoomCoordinates = $Room.Name.Substring(4).Split('.')[0]
-    $Map.$RoomCoordinates = Get-Content $Room | ConvertFrom-Json
+    $Map.$RoomCoordinates = Get-Content $Room | ConvertFrom-Json #-AsHashtable
 }
 
 # Prepare global variables
@@ -80,6 +80,9 @@ while ($State.CurrentRoom -ne "495000") {
     Clear-Host
     
     Show-Room
+    
+    ## DEV: CONTINUE HERE
+    ## To remove item from the room data: $map."$($State.CurrentRoom)".Items.PsObject.Properties.Remove("Mug")
     
     $PlayerInput = Read-Host "What would you like to do?"
     
