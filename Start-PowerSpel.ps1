@@ -60,7 +60,7 @@ $DirectionTable = @{
 }
 $State = @{
     CurrentRoom = 505000
-    Inventory = @("1","2","3","4","5","6","7","8","9","10") # Don't fill this with text longer than the respective header column, or it will mess up the visualization.
+    Inventory = @("1","2","3","4","5","6","7","8") # Don't fill this with text longer than the respective header column, or it will mess up the visualization.
     Achievements = @("Good busy","Tutorial monster") # Don't fill this with text longer than the respective header column, or it will mess up the visualization.
 }
 

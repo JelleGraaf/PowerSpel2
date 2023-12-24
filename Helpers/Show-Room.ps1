@@ -27,4 +27,12 @@ function Show-Room {
     # Write exits to screen.
     Write-Host "[ Exits: $($Map."$($State.CurrentRoom)".exits) ]"
     Write-Host
+
+    # Write room items to screen.
+    foreach ($Item in $Map."$($State.CurrentRoom)".Items) {
+        #Write-Host "An $Item is here." -ForegroundColor Cyan
+        Write-Host "Item: $Item" -ForegroundColor Cyan
+        Write-Host "Description: $($Item.ItemDescription)" -ForegroundColor Cyan
+    }
+    Write-Host
 }

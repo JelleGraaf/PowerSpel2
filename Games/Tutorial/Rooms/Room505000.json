@@ -1,11 +1,17 @@
 {
     "RoomTitle": "Room title",
-    "RoomDescription": "This is the longer description of what is inside the room.",
+    "RoomDescription": "Start here. Move to the west to end the game.",
     "Exits": [
         "North",
         "East",
         "West",
         "Up"
-    ]
-
+    ],
+    "Items": {
+        "Mug": {
+            "ItemDescription": "A mug stands on a table.",
+            "PickupMessage": "You take the mug with you.",
+            "InventoryName": "A branded company mug."
+        }
+    }
 }
