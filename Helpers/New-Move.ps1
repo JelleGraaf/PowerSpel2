@@ -12,20 +12,20 @@ function New-Move {
         [string]$Direction
     )
 
-    write-host "Currentroom: $Currentroom" -ForegroundColor Magenta
+    write-host "Currentroom: $($State.CurrentRoom)" -ForegroundColor Magenta
 
     switch ($Direction) {
-        N { [int]$DestinationRoom = $CurrentRoom +   100 }
-        S { [int]$DestinationRoom = $CurrentRoom -   100 }
-        E { [int]$DestinationRoom = $CurrentRoom + 10000 }
-        W { [int]$DestinationRoom = $CurrentRoom - 10000 }
-        U { [int]$DestinationRoom = $CurrentRoom +     1 }
-        D { [int]$DestinationRoom = $CurrentRoom -     1 }
+        N { [int]$DestinationRoom = $State.CurrentRoom +   100 }
+        S { [int]$DestinationRoom = $State.CurrentRoom -   100 }
+        E { [int]$DestinationRoom = $State.CurrentRoom + 10000 }
+        W { [int]$DestinationRoom = $State.CurrentRoom - 10000 }
+        U { [int]$DestinationRoom = $State.CurrentRoom +     1 }
+        D { [int]$DestinationRoom = $State.CurrentRoom -     1 }
     }
 
     # Check to see if there is a room with the correct coordinates in the map and an exit in the room info, which corresponds with the Direction.
-    if ($Map.Keys -contains $Destinationroom -and (($Map."$Currentroom".Exits).substring(0,1) -contains $Direction)) {
-        $Script:CurrentRoom = $DestinationRoom
+    if ($Map.Keys -contains $Destinationroom -and (($Map."$($State.CurrentRoom)".Exits).substring(0,1) -contains $Direction)) {
+        $Script:State.CurrentRoom = $DestinationRoom
     }
     else {
         $Script:Action = "You can't go that way. Try again."

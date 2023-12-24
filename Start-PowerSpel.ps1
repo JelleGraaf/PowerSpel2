@@ -20,7 +20,7 @@ param (
 
 
 #########################################
-#region initialization                  #
+#region INITIALIZATION                  #
 #########################################
 
 # Import general helper functions.
@@ -48,7 +48,6 @@ foreach ($Room in $Rooms) {
     $RoomCoordinates = $Room.Name.Substring(4).Split('.')[0]
     $Map.$RoomCoordinates = Get-Content $Room | ConvertFrom-Json
 }
-[int]$CurrentRoom = 505000
 
 # Prepare global variables
 $DirectionTable = @{
@@ -59,6 +58,11 @@ $DirectionTable = @{
     U = "up"
     D = "down"
 }
+$State = @{
+    CurrentRoom = 505000
+    Inventory = @("1","2","3","4","5","6","7","8","9","10") # Don't fill this with text longer than the respective header column, or it will mess up the visualization.
+    Achievements = @("Good busy","Tutorial monster") # Don't fill this with text longer than the respective header column, or it will mess up the visualization.
+}
 
 #endregion initialization
 
@@ -67,11 +71,11 @@ $DirectionTable = @{
 #region MAIN GAME                       #
 #########################################
 
-# Start the game with the splash screen
+# Start the game with a splash screen.
 Write-StartScreen
 
 # Main game loop
-while ($CurrentRoom -ne "495000") {
+while ($State.CurrentRoom -ne "495000") {
     # The number is the game exit room, after which the game ends.
     Clear-Host
     
@@ -101,6 +105,6 @@ while ($CurrentRoom -ne "495000") {
 
 
 #region endgame
-
+#Write-Ending
 
 #endregion endgame

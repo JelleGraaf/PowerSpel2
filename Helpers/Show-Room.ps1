@@ -5,7 +5,11 @@ function Show-Room {
 
     #>
 
-    Write-Host "DEV: Currentroom: $CurrentRoom." -ForegroundColor Magenta
+    Write-Host "DEV: Currentroom: $($State.CurrentRoom)." -ForegroundColor Magenta
+
+    # Write header to screen
+    Show-Header
+    Write-Host
 
     # Write previous action to screen
     if ($Action) {
@@ -14,13 +18,13 @@ function Show-Room {
     }
 
     # Write room title to screen.
-    Write-Host "[$($Map."$CurrentRoom".RoomTitle)]" -BackgroundColor White -ForegroundColor Black
+    Write-Host "[$($Map."$($State.CurrentRoom)".RoomTitle)]" -BackgroundColor White -ForegroundColor Black
     Write-Host
     
     # Write room description to screen.
-    Write-WordWrapHost "$($Map."$CurrentRoom".RoomDescription)"
+    Write-WordWrapHost "$($Map."$($State.CurrentRoom)".RoomDescription)"
 
     # Write exits to screen.
-    Write-Host "[ Exits: $($Map."$CurrentRoom".exits) ]"
+    Write-Host "[ Exits: $($Map."$($State.CurrentRoom)".exits) ]"
     Write-Host
 }
