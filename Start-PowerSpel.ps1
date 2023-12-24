@@ -72,7 +72,7 @@ $State = @{
 #########################################
 
 # Start the game with a splash screen.
-Write-StartScreen
+Show-StartScreen
 
 # Main game loop
 while ($State.CurrentRoom -ne "495000") {

@@ -1,7 +1,7 @@
-﻿function Write-StartScreen {
+﻿function Show-StartScreen {
     <#
     .SYNOPSIS
-        Present the splash screen and introduction text.
+        Presents the splash screen and introduction text.
 
     .NOTES
         Source: https://www.asciiart.eu/text-to-ascii-art
