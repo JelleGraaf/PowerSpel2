@@ -4,6 +4,8 @@
     "Exits": [
         "South",
         "West"
-    ]
+    ],
+    "Items": {
+    }
 
 }

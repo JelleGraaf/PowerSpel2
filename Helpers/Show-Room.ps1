@@ -29,9 +29,6 @@ function Show-Room {
     Write-Host
 
     # Write room items to screen.
-    $Items = @{}
-    $Map."$($State.CurrentRoom)".Items.psobject.properties | ForEach-Object { $Items[$_.Name] = $_.Value }
-
     foreach ($Item in $Items.Keys) {
         Write-Host $Items.$Item.ItemDescription -ForegroundColor Cyan
     }

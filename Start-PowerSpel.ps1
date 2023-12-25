@@ -11,6 +11,11 @@
 .NOTES
     Written by:       Jelle the Graaf (The Netherlands).
     Source on Github: https://github.com/JelleGraaf/PowerSpel2
+
+    TODO: 
+    - Make the room options appear in the current room, not the next one.
+    - complete the process of picking up an item
+
 #>
 
 param (
@@ -42,7 +47,10 @@ $console.BackgroundColor = "black"
 
 # Import map 
 $Rooms = Get-ChildItem -Path "$PSScriptRoot\Games\$Game\Rooms\" -File -Recurse
-# $Rooms = Get-ChildItem -Path "C:\git\PowerSpel2\Games\$Game\Rooms\" -File -Recurse ## LOCAL DEV
+<# LOCAL DEV
+$Game = "Tutorial"
+$Rooms = Get-ChildItem -Path "C:\git\PowerSpel2\Games\$Game\Rooms\" -File -Recurse
+#>
 $Map = @{}
 foreach ($Room in $Rooms) {
     $RoomCoordinates = $Room.Name.Substring(4).Split('.')[0]
@@ -59,9 +67,9 @@ $DirectionTable = @{
     D = "down"
 }
 $State = @{
-    CurrentRoom = 505000
-    Inventory = @("1","2","3","4","5","6","7","8") # Don't fill this with text longer than the respective header column, or it will mess up the visualization.
-    Achievements = @("Good busy","Tutorial monster") # Don't fill this with text longer than the respective header column, or it will mess up the visualization.
+    CurrentRoom  = 505000
+    Inventory    = @("Example") # Don't fill this with text longer than the respective header column, or it will mess up the visualization.
+    Achievements = @("Good busy", "Tutorial monster") # Don't fill this with text longer than the respective header column, or it will mess up the visualization.
 }
 
 #endregion initialization
@@ -79,26 +87,46 @@ while ($State.CurrentRoom -ne "495000") {
     # The number is the game exit room, after which the game ends.
     Clear-Host
     
+    # Write the room content to screen.
     Show-Room
     
-    ## DEV: CONTINUE HERE
-    ## To remove item from the room data: $map."$($State.CurrentRoom)".Items.PsObject.Properties.Remove("Mug")
+    # Take inventory of all the items in the current room.
+    $Items = @{}
+    $Map."$($State.CurrentRoom)".Items.psobject.properties | ForEach-Object { $Items[$_.Name] = $_.Value }
     
+    # Write extra room options to screen.
+    $RoomOptions = @()
+    foreach ($Item in $Items.Keys) {
+        $RoomOptions += "Get $($Item.ToLower())."
+    }
+    if ($RoomOptions) { 
+        Show-RoomOptions -RoomOptions $RoomOptions
+    }
+    
+    # Read player action.
     $PlayerInput = Read-Host "What would you like to do?"
     
-    $Action = $null
+    $ActionMessage = $null
     if (@("N", "E", "S", "W", "U", "D") -contains $PlayerInput) {
         # Valid moves get processed here.
-        $Action = "You move $($DirectionTable.$PlayerInput)."
+        $ActionMessage = "You move $($DirectionTable.$PlayerInput)."
         New-Move -Direction $PlayerInput
     }
     elseif (@(0..9) -contains $PlayerInput) {
         # Menu actions get processed here.
-        $Action = "Action: $PlayerInput."
+        $Action = $RoomOptions[$PlayerInput - 1]
+
+        # Remove the item from the room and add it to inventory
+        if ($Action -like "Get *") {
+            $PickUpItem = $Action.Substring(4, $($Action.Length - 5))
+            Invoke-PickUpItem -PickUpItem $PickUpItem
+        }
+        $ActionMessage = $Map."$($State.CurrentRoom)".Items.$PickUpItem.PickUpMessage
+
     }
     else {
         # Invalid input displays a message saying so.
-        $Action = "Invalid input, try again."
+        $ActionMessage = "Invalid input, try again."
     }
     
 }
