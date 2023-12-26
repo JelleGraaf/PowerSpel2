@@ -13,7 +13,6 @@
     Source on Github: https://github.com/JelleGraaf/PowerSpel2
 
     TODO: 
-    - Make the room options appear in the current room, not the next one.
     - complete the process of picking up an item
 
 #>
@@ -94,12 +93,12 @@ while ($State.CurrentRoom -ne "495000") {
     # Write the room content to screen.
     Show-Room
     
-    # Write extra room options to screen.
-    $RoomOptions = @()
-    foreach ($Item in $Items.Keys) {
-        $RoomOptions += "Get $($Item.ToLower())."
-    }
-    if ($RoomOptions) { 
+    # Write extra room options to screen, if any.
+    if ($Items.Count -gt 0) {
+        $RoomOptions = @()
+        foreach ($Item in $Items.Keys) {
+            $RoomOptions += "Get $($Item.ToLower())."
+        }
         Show-RoomOptions -RoomOptions $RoomOptions
     }
     
