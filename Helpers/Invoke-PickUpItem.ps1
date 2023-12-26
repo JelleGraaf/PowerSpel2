@@ -14,7 +14,4 @@ function Invoke-PickUpItem {
     
     # Add the item to the players inventory.
     $Script:State.Inventory += $PickUpItem
-
-    # Remove the item from the RoomOptions script variable
-    $RoomOptions = $RoomOptions | Where-Object {$_ -notcontains $PickUpItem} ## TODO: Make this work
 }

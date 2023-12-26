@@ -87,12 +87,12 @@ while ($State.CurrentRoom -ne "495000") {
     # The number is the game exit room, after which the game ends.
     Clear-Host
     
-    # Write the room content to screen.
-    Show-Room
-    
     # Take inventory of all the items in the current room.
     $Items = @{}
     $Map."$($State.CurrentRoom)".Items.psobject.properties | ForEach-Object { $Items[$_.Name] = $_.Value }
+    
+    # Write the room content to screen.
+    Show-Room
     
     # Write extra room options to screen.
     $RoomOptions = @()
