@@ -94,8 +94,8 @@ while ($State.CurrentRoom -ne "495000") {
     Show-Room
     
     # Write extra room options to screen, if any.
+    $RoomOptions = @()
     if ($Items.Count -gt 0) {
-        $RoomOptions = @()
         foreach ($Item in $Items.Keys) {
             $RoomOptions += "Get $($Item.ToLower())."
         }
@@ -111,20 +111,22 @@ while ($State.CurrentRoom -ne "495000") {
         $ActionMessage = "You move $($DirectionTable.$PlayerInput)."
         New-Move -Direction $PlayerInput
     }
-    elseif (@(0..9) -contains $PlayerInput) {
+    elseif (@(0..9) -contains $PlayerInput -and $RoomOptions.Count -gt 0) {
         # Menu actions get processed here.
         $Action = $RoomOptions[$PlayerInput - 1]
 
         # Remove the item from the room and add it to inventory
         if ($Action -like "Get *") {
             $PickUpItem = $Action.Substring(4, $($Action.Length - 5))
-            Invoke-PickUpItem -PickUpItem $PickUpItem
+            $Map."$($State.CurrentRoom)".Items.PsObject.Properties.Remove("$PickUpItem")
+            $State.Inventory += $PickUpItem
+            $PickUpItem = $null
         }
         $ActionMessage = $Map."$($State.CurrentRoom)".Items.$PickUpItem.PickUpMessage
 
     }
     else {
-        # Invalid input displays a message saying so.
+        # Invalid input gets processed here.
         $ActionMessage = "Invalid input, try again."
     }
     
