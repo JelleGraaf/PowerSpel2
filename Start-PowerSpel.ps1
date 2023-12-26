@@ -11,10 +11,6 @@
 .NOTES
     Written by:       Jelle the Graaf (The Netherlands).
     Source on Github: https://github.com/JelleGraaf/PowerSpel2
-
-    TODO: 
-    - complete the process of picking up an item
-
 #>
 
 param (
@@ -40,9 +36,9 @@ foreach ($GameHelper in $GameHelpers) {
 }
 
 # Force console colors
-$console = $host.UI.RawUI
-$console.ForegroundColor = "white"
-$console.BackgroundColor = "black"
+$Console = $Host.UI.RawUI
+$Console.ForegroundColor = "White"
+$Console.BackgroundColor = "Black"
 
 # Import map 
 $Rooms = Get-ChildItem -Path "$PSScriptRoot\Games\$Game\Rooms\" -File -Recurse
