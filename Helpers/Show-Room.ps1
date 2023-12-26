@@ -12,8 +12,8 @@ function Show-Room {
     Write-Host
 
     # Write previous action to screen
-    if ($Action) {
-        Write-WordWrapHost $Action -Color Green
+    if ($ActionMessage) {
+        Write-WordWrapHost $ActionMessage -Color Green
         Write-Host
     }
 

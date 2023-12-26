@@ -26,6 +26,6 @@ function New-Move {
         $Script:State.CurrentRoom = $DestinationRoom
     }
     else {
-        $Script:Action = "You can't go that way. Try again."
+        $Script:ActionMessage = "You can't go that way. Try again."
     }
 }
