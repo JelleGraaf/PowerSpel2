@@ -118,12 +118,14 @@ while ($State.CurrentRoom -ne "495000") {
         # Remove the item from the room and add it to inventory
         if ($Action -like "Get *") {
             $PickUpItem = $Action.Substring(4, $($Action.Length - 5))
+            $ActionMessage = $Map."$($State.CurrentRoom)".Items.$PickUpItem.PickUpMessage
             $Map."$($State.CurrentRoom)".Items.PsObject.Properties.Remove("$PickUpItem")
             $State.Inventory += $PickUpItem
             $PickUpItem = $null
+        } else {
+            # Process room item
+            $ActionMessage = "Processed room item XXX"
         }
-        $ActionMessage = $Map."$($State.CurrentRoom)".Items.$PickUpItem.PickUpMessage
-
     }
     else {
         # Invalid input gets processed here.
