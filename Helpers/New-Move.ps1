@@ -3,8 +3,11 @@ function New-Move {
     .SYNOPSIS
         Moves the character to a different room.
 
-    .PARAMETER direction
+    .PARAMETER Direction
         Direction of the room to move to, relative to the current room.
+
+    .EXAMPLE
+        ps> New-Move -Direction E
     #>
 
     param(

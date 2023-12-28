@@ -8,6 +8,14 @@ function Show-RoomOptions {
     
     .PARAMETER RoomOptions
         An array of all the extra options in the current room.
+
+    .EXAMPLE
+        ps> $Items = @{}
+        ps> $Map."$($State.CurrentRoom)".Items.psobject.properties | ForEach-Object { $Items[$_.Name] = $_.Value }
+        ps> $RoomOptions = @()
+        ps> foreach ($Item in $Items.Keys) { $RoomOptions += "Get $($Item.ToLower())." }
+        
+        ps> Show-RoomOptions -RoomOptions $RoomOptions
     #>
 
     param(

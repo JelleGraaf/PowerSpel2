@@ -3,10 +3,13 @@
     Starts a game of PowerSpel.
 
 .DESCRIPTION
-    Starts a game of PowerSpel. Walk through a world in this text-based adventure, styled after the Multi-User Dungeons that were popular in the 90s.
+    Starts a game of PowerSpel. Walk through a world in this text-based adventure, styled after the Multi-User Dungeons that were popular in the 1990s.
 
 .PARAMETER Game
     Choose the game mode here. Defaults to Pentest, the original PowerSpel.
+
+.EXAMPLE
+    ps> Start-PowerSpel.ps1 -Game Tutorial
 
 .NOTES
     Written by:       Jelle the Graaf (The Netherlands).
@@ -28,7 +31,7 @@ foreach ($GeneralHelper in $GeneralHelpers) {
     . $GeneralHelper.fullname
 }
 
-# Import game mode helper functions
+# Import game helper functions
 $GameHelpers = Get-ChildItem -Path $PSScriptRoot\Games\$Game\Helpers -File
 foreach ($GameHelper in $GameHelpers) {
     . $GameHelper.fullname

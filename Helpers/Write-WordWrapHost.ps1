@@ -11,6 +11,9 @@ Function Write-WordWrapHost {
 
     .PARAMETER Width
         The width of the screen in characters, at which point to end the current line and start on the next one. Defaults to 128 characters.
+
+    .EXAMPLE
+        ps> Write-WordWrapHost -Textblock "This is the text you want to write to screen" -Color Green -Width 100
     #>
 
     param(
