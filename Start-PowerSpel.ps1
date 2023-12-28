@@ -29,7 +29,7 @@ foreach ($GeneralHelper in $GeneralHelpers) {
 }
 
 # Import game mode helper functions
-$GameHelpers = Get-ChildItem -Path $PSScriptRoot\Games\$Game\ -File
+$GameHelpers = Get-ChildItem -Path $PSScriptRoot\Games\$Game\Helpers -File
 foreach ($GameHelper in $GameHelpers) {
     . $GameHelper.fullname
 }
@@ -48,7 +48,7 @@ $Rooms = Get-ChildItem -Path "C:\git\PowerSpel2\Games\$Game\Rooms\" -File -Recur
 $Map = @{}
 foreach ($Room in $Rooms) {
     $RoomCoordinates = $Room.Name.Substring(4).Split('.')[0]
-    $Map.$RoomCoordinates = Get-Content $Room | ConvertFrom-Json #-AsHashtable
+    $Map.$RoomCoordinates = Get-Content $Room | ConvertFrom-Json
 }
 
 # Prepare global variables
@@ -65,6 +65,7 @@ $State = @{
     Inventory    = @() # Don't fill this with text longer than the respective header column, or it will mess up the visualization.
     Achievements = @() # Don't fill this with text longer than the respective header column, or it will mess up the visualization.
 }
+[hashtable]$GameAchievements = Get-Content "$PSScriptRoot\Games\$Game\Data\GameAchievements.json" | ConvertFrom-Json -AsHashtable
 
 #endregion initialization
 
@@ -128,10 +129,24 @@ while ($State.CurrentRoom -ne "495000") {
         $ActionMessage = "Invalid input, try again."
     }
     
-    # Check for  achievements
+    # Check for completed achievements.
     if ($State.Inventory -contains "A pen" -and $State.Inventory -contains "A mug") {
-        $State.Achievements += "Collector of things"
-        $CompletedAchievement = "Collector of things"
+        $AchievementName = "Collector"
+        if ($GameAchievements.Keys -contains $AchievementName) {
+            $State.Achievements += $AchievementName
+            $CompletedAchievement = $AchievementName
+            $GameAchievements.Remove($AchievementName)
+        }
+    }
+
+    if ($State.CurrentRoom -eq 505001) {
+        $AchievementName = "Attic explorer"
+        if ($GameAchievements.Keys -contains $AchievementName) {
+            $State.Achievements += $AchievementName
+            $CompletedAchievement = $AchievementName
+            $GameAchievements.Remove($AchievementName)
+        }
+
     }
 }
 
