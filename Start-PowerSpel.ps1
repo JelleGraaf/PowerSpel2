@@ -62,8 +62,8 @@ $DirectionTable = @{
 }
 $State = @{
     CurrentRoom  = 505000
-    Inventory    = @("Example") # Don't fill this with text longer than the respective header column, or it will mess up the visualization.
-    Achievements = @("Good busy", "Tutorial monster") # Don't fill this with text longer than the respective header column, or it will mess up the visualization.
+    Inventory    = @() # Don't fill this with text longer than the respective header column, or it will mess up the visualization.
+    Achievements = @() # Don't fill this with text longer than the respective header column, or it will mess up the visualization.
 }
 
 #endregion initialization
@@ -128,13 +128,16 @@ while ($State.CurrentRoom -ne "495000") {
         $ActionMessage = "Invalid input, try again."
     }
     
+    # Check for  achievements
+    if ($State.Inventory -contains "A pen" -and $State.Inventory -contains "A mug") {
+        $State.Achievements += "Collector of things"
+        $CompletedAchievement = "Collector of things"
+    }
 }
 
-
-#endregion main game
-
-
-#region endgame
+#########################################
+#region endgame                         #
+#########################################
 #Write-Ending
 Write-Host "Einde!" -ForegroundColor Green
 

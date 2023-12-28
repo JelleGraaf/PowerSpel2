@@ -5,15 +5,21 @@ function Show-Room {
 
     #>
 
-    Write-Host "DEV: Currentroom: $($State.CurrentRoom)." -ForegroundColor Magenta
+    #Write-Host "DEV: Currentroom: $($State.CurrentRoom)." -ForegroundColor Magenta
 
-    # Write header to screen
+    # Write header to screen.
     Show-Header
     Write-Host
 
-    # Write previous action to screen
+    # Write previous action to screen, if any.
     if ($ActionMessage) {
         Write-WordWrapHost $ActionMessage -Color Green
+        if (!$CompletedAchievement) { Write-Host } # Skip this empty line when an achievement is completed, it looks better that way.
+    }
+
+    # Write completed achievements to screen, if any.
+    if ($CompletedAchievement) {
+        Write-Host "You have completed the achievement '$CompletedAchievement'!" -ForegroundColor Yellow
         Write-Host
     }
 
