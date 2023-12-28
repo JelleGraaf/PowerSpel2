@@ -18,7 +18,6 @@ param (
     [string]$Game = "Pentest"
 )
 
-
 #########################################
 #region INITIALIZATION                  #
 #########################################
@@ -107,7 +106,7 @@ while ($State.CurrentRoom -ne "495000") {
         $ActionMessage = "You move $($DirectionTable.$PlayerInput)."
         New-Move -Direction $PlayerInput
     }
-    elseif (@(0..9) -contains $PlayerInput -and $RoomOptions.Count -gt 0) {
+    elseif (@(1..9) -contains $PlayerInput -and $RoomOptions.Count -gt 0) {
         # Menu actions get processed here.
         $Action = $RoomOptions[$PlayerInput - 1]
 
@@ -118,7 +117,8 @@ while ($State.CurrentRoom -ne "495000") {
             $Map."$($State.CurrentRoom)".Items.PsObject.Properties.Remove("$PickUpItem")
             $State.Inventory += $PickUpItem
             $PickUpItem = $null
-        } else {
+        }
+        else {
             # Process room item
             $ActionMessage = "Processed room item XXX"
         }
@@ -136,5 +136,6 @@ while ($State.CurrentRoom -ne "495000") {
 
 #region endgame
 #Write-Ending
+Write-Host "Einde!" -ForegroundColor Green
 
 #endregion endgame
