@@ -2,7 +2,6 @@ function Show-Room {
     <#
     .SYNOPSIS
         Displays the content of the room to screen.
-
     #>
 
     #Write-Host "DEV: Currentroom: $($State.CurrentRoom)." -ForegroundColor Magenta

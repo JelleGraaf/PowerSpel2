@@ -78,8 +78,7 @@ $State = @{
 Show-StartScreen
 
 # Main game loop
-while ($State.CurrentRoom -ne "495000") {
-    # The number is the game exit room, after which the game ends.
+while ($State.CurrentRoom -ne "495000") { # The number is the game exit room, after which the game ends.
     Clear-Host
     
     # Take inventory of all the items in the current room.
@@ -123,6 +122,9 @@ while ($State.CurrentRoom -ne "495000") {
             # Process room item
             $ActionMessage = "Processed room item XXX"
         }
+    }
+    elseif ($PlayerInput -eq 0) {
+        Show-Achievements
     }
     else {
         # Invalid input gets processed here.
