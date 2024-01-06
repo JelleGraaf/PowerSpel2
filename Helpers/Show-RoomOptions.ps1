@@ -26,5 +26,6 @@ function Show-RoomOptions {
     for ($i = 0; $i -lt $RoomOptions.Count; $i++) {
         Write-Host "$($i+1): $($RoomOptions[$i])" -ForegroundColor Gray
     }
-
+    
+    Write-Host
 }
