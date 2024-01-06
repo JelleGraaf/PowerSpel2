@@ -11,9 +11,14 @@ function Show-Achievements {
     
     # Write list of uncompleted achievements to screen.
     Write-Host "List of achievements you didn't unlock (yet) in this game:"
-    foreach ($Achievement in $GameAchievements.Keys) {
-        Write-Host "- $Achievement".PadRight(30) -NoNewline -ForegroundColor Cyan
-        Write-Host "($($GameAchievements.$Achievement))" -ForegroundColor Cyan
+    if ($GameAchievements.Keys.Count -gt 0) {
+        foreach ($Achievement in $GameAchievements.Keys) {
+            Write-Host "- $Achievement".PadRight(30) -NoNewline -ForegroundColor Cyan
+            Write-Host "($($GameAchievements.$Achievement))" -ForegroundColor Cyan
+        }
+    }
+    else {
+        Write-Host ">>> You have unlocked all achievements. Congratulations! <<<" -ForegroundColor Cyan
     }
     Write-Host
     Pause
