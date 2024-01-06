@@ -31,8 +31,7 @@ function Show-Room {
     Write-WordWrapHost "$($Map."$($State.CurrentRoom)".RoomDescription)"
 
     # Write exits to screen.
-    Write-Host "[ Exits: $($Map."$($State.CurrentRoom)".Exits) ]"
-    Write-Host
+    Show-Exits
 
     # Write room items to screen.
     foreach ($Item in $Items.Keys) {

@@ -1,12 +1,28 @@
 {
     "RoomTitle": "Room title",
     "RoomDescription": "Start here. Move to the west to end the game.",
-    "Exits": [
-        "North",
-        "East",
-        "West",
-        "Up"
-    ],
+    "Exits": {
+        "North": {
+            "ExitDirection": "North",
+            "ExitMessage": "You loop naar het north",
+            "LockedDoor": false
+        },
+        "East": {
+            "ExitDirection": "East",
+            "ExitMessage": "You sprint to the east",
+            "LockedDoor": true
+        },
+        "West": {
+            "ExitDirection": "West",
+            "ExitMessage": "You loop naar het west",
+            "LockedDoor": false
+        },
+        "Up": {
+            "ExitDirection": "Up",
+            "ExitMessage": "You loop naar het north",
+            "LockedDoor": false
+        }
+    },
     "Items": {
         "A mug": {
             "ItemDescription": "A mug stands on a table.",

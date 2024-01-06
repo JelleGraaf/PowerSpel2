@@ -55,14 +55,6 @@ foreach ($Room in $Rooms) {
 }
 
 # Prepare global variables
-$DirectionTable = @{
-    N = "to the north"
-    E = "to the east"
-    S = "to the south"
-    W = "to the west"
-    U = "up"
-    D = "down"
-}
 $State = @{
     CurrentRoom  = 505000
     Inventory    = @() # Don't fill this with text longer than the respective header column, or it will mess up the visualization.
@@ -106,7 +98,6 @@ while ($State.CurrentRoom -ne "495000") { # The number is the game exit room, af
     $ActionMessage = $null
     if (@("N", "E", "S", "W", "U", "D") -contains $PlayerInput) {
         # Valid moves get processed here.
-        $ActionMessage = "You move $($DirectionTable.$PlayerInput)."
         New-Move -Direction $PlayerInput
     }
     elseif (@(1..9) -contains $PlayerInput -and $RoomOptions.Count -gt 0) {
@@ -159,6 +150,7 @@ while ($State.CurrentRoom -ne "495000") { # The number is the game exit room, af
 #region endgame                         #
 #########################################
 #Write-Ending
+Write-Host
 Write-Host "Einde!" -ForegroundColor Green
 
 #endregion endgame

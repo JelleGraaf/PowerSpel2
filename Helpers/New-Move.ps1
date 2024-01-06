@@ -19,21 +19,46 @@ function New-Move {
     #>
 
     param(
-        [ValidateSet("N","E","S","W","U","D")]
+        [ValidateSet("N", "E", "S", "W", "U", "D")]
         [string]$Direction
     )
 
     switch ($Direction) {
-        N { [int]$DestinationRoom = $State.CurrentRoom +   100 }
-        S { [int]$DestinationRoom = $State.CurrentRoom -   100 }
-        E { [int]$DestinationRoom = $State.CurrentRoom + 10000 }
-        W { [int]$DestinationRoom = $State.CurrentRoom - 10000 }
-        U { [int]$DestinationRoom = $State.CurrentRoom +     1 }
-        D { [int]$DestinationRoom = $State.CurrentRoom -     1 }
+        N { 
+            [int]$DestinationRoom = $State.CurrentRoom + 100
+            $DirectionFull = "North"
+            $DefaultMoveMessage = "You walk to the north."
+        }
+        S { 
+            [int]$DestinationRoom = $State.CurrentRoom - 100
+            $DirectionFull = "South"
+            $DefaultMoveMessage = "You walk to the south."
+        }
+        E { 
+            [int]$DestinationRoom = $State.CurrentRoom + 10000
+            $DirectionFull = "East"
+            $DefaultMoveMessage = "You walk to the east."
+        }
+        W { 
+            [int]$DestinationRoom = $State.CurrentRoom - 10000
+            $DirectionFull = "West"
+            $DefaultMoveMessage = "You walk to the west."
+        }
+        U { 
+            [int]$DestinationRoom = $State.CurrentRoom + 1
+            $DirectionFull = "Up"
+            $DefaultMoveMessage = "You walk up."
+        }
+        D { 
+            [int]$DestinationRoom = $State.CurrentRoom - 1
+            $DirectionFull = "Down"
+            $DefaultMoveMessage = "You walk down."
+        }
     }
 
     # Check to see if there is a room with the correct coordinates in the map, and an exit in the room info which corresponds with the Direction.
-    if ($Map.Keys -contains $Destinationroom -and (($Map."$($State.CurrentRoom)".Exits).substring(0,1) -contains $Direction)) {
+    if ($Map.Keys -contains $Destinationroom -and (($Map."$($State.CurrentRoom)".Exits).$DirectionFull)) {
+        $Script:ActionMessage = $DefaultMoveMessage
         $Script:State.CurrentRoom = $DestinationRoom
     }
     else {
