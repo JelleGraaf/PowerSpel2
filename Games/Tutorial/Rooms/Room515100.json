@@ -1,10 +1,16 @@
 {
     "RoomTitle": "Room title",
     "RoomDescription": "This is the longer description of what is inside the room.",
-    "Exits": [
-        "North",
-        "South"
-    ],
+    "Exits": {
+        "North": {
+            "ExitDirection": "North",
+            "LockedDoor": false
+        },
+        "South": {
+            "ExitDirection": "South",
+            "LockedDoor": false
+        }
+    },
     "Items": {
     }
 

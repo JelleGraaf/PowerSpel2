@@ -4,22 +4,22 @@
     "Exits": {
         "North": {
             "ExitDirection": "North",
-            "ExitMessage": "You loop naar het north",
+            "ExitMessage": "<Alternate> north",
             "LockedDoor": false
         },
         "East": {
             "ExitDirection": "East",
-            "ExitMessage": "You sprint to the east",
+            "ExitMessage": "<Alternate> east",
             "LockedDoor": true
         },
         "West": {
             "ExitDirection": "West",
-            "ExitMessage": "You loop naar het west",
+            "ExitMessage": "<Alternate> west",
             "LockedDoor": false
         },
         "Up": {
             "ExitDirection": "Up",
-            "ExitMessage": "You loop naar het north",
+            "ExitMessage": "<Alternate> north",
             "LockedDoor": false
         }
     },
