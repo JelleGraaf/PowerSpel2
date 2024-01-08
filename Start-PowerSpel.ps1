@@ -137,21 +137,19 @@ while ($State.CurrentRoom -ne "495000") { # The number is the game exit room, af
     }
     
     # Check for completed achievements.
+    ## Collector
     if ($State.Inventory -contains "A pen" -and $State.Inventory -contains "A mug") {
         $AchievementName = "Collector"
         if ($GameAchievements.Keys -contains $AchievementName) {
-            $State.Achievements += $AchievementName
-            $CompletedAchievement = $AchievementName
-            $GameAchievements.Remove($AchievementName)
+            Invoke-CompleteAchievement -AchievementName $AchievementName
         }
     }
 
+    ## Attic explorer
     if ($State.CurrentRoom -eq 505001) {
         $AchievementName = "Attic explorer"
         if ($GameAchievements.Keys -contains $AchievementName) {
-            $State.Achievements += $AchievementName
-            $CompletedAchievement = $AchievementName
-            $GameAchievements.Remove($AchievementName)
+            Invoke-CompleteAchievement -AchievementName $AchievementName
         }
 
     }
