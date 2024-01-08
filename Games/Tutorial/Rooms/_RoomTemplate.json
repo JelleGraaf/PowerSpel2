@@ -1,3 +1,43 @@
 {
-    "ThisFile": "Contains a template / schema of what the room files should look like."
+    "RoomTitle": "This is the title/name of the room",
+    "RoomDescription": "A longer description of what is inside the room.",
+    "Exits": {
+        "North": {
+            "ExitDirection": "North",
+            "ExitMessage": "You walk to the north.",
+            "LockedDoor": false
+        },
+        "East": {
+            "ExitDirection": "East",
+            "ExitMessage": "You walk to the east.",
+            "LockedDoor": false
+        },
+        "South": {
+            "ExitDirection": "South",
+            "ExitMessage": "You walk to the south.",
+            "LockedDoor": false
+        },
+        "West": {
+            "ExitDirection": "West",
+            "ExitMessage": "You walk to the west.",
+            "LockedDoor": false
+        },
+        "Up": {
+            "ExitDirection": "Up",
+            "ExitMessage": "You walk up.",
+            "LockedDoor": false
+        },
+        "Down": {
+            "ExitDirection": "Down",
+            "ExitMessage": "You walk down.",
+            "LockedDoor": false
+        }
+    },
+    "Items": {
+        "An item": {
+            "ItemDescription": "An item lies on the floor.",
+            "PickupMessage": "You take the item with you.",
+            "InventoryName": "A shiny item."
+        }
+    }
 }
