@@ -57,7 +57,7 @@ $Rooms = Get-ChildItem -Path "C:\git\PowerSpel2\Games\$Game\Rooms\" -File -Recur
 $Map = @{}
 foreach ($Room in $Rooms) {
     $RoomCoordinates = $Room.Name.Substring(4).Split('.')[0]
-    $Map.$RoomCoordinates = Get-Content $Room | ConvertFrom-Json
+    $Map.$RoomCoordinates = Get-Content $Room | ConvertFrom-Json -AsHashtable
 }
 
 # Prepare global variables
