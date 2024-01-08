@@ -26,12 +26,18 @@ param (
 #########################################
 
 # Import general helper functions.
+<# LOCAL DEV
+$GeneralHelpers = Get-ChildItem -Path ./Helpers
+#>
 $GeneralHelpers = Get-ChildItem -Path $PSScriptRoot\Helpers\
 foreach ($GeneralHelper in $GeneralHelpers) {
     . $GeneralHelper.fullname
 }
 
 # Import game helper functions
+<# LOCAL DEV
+$GameHelpers = Get-ChildItem -Path .\Games\tutorial\Helpers -File
+#>
 $GameHelpers = Get-ChildItem -Path $PSScriptRoot\Games\$Game\Helpers -File
 foreach ($GameHelper in $GameHelpers) {
     . $GameHelper.fullname
@@ -60,7 +66,10 @@ $State = @{
     Inventory    = @() # Don't fill this with text longer than the respective header column, or it will mess up the visualization.
     Achievements = @() # Don't fill this with text longer than the respective header column, or it will mess up the visualization.
 }
-[hashtable]$GameAchievements = Get-Content "$PSScriptRoot\Games\$Game\Data\GameAchievements.json" | ConvertFrom-Json -AsHashtable
+<# LOCAL DEV
+$GameAchievements = Get-Content ".\Games\$Game\Data\GameAchievements.json" | ConvertFrom-Json -AsHashtable
+#>
+$GameAchievements = Get-Content "$PSScriptRoot\Games\$Game\Data\GameAchievements.json" | ConvertFrom-Json -AsHashtable
 
 #endregion initialization
 
