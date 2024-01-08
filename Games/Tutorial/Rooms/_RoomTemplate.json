@@ -36,7 +36,7 @@
     "Items": {
         "An item": {
             "ItemDescription": "An item lies on the floor.",
-            "PickupMessage": "You take the item with you.",
+            "PickUpMessage": "You take the item with you.",
             "InventoryName": "A shiny item."
         }
     }

@@ -26,12 +26,12 @@
     "Items": {
         "A mug": {
             "ItemDescription": "A mug stands on a table.",
-            "PickupMessage": "You take the mug with you.",
+            "PickUpMessage": "You take the mug with you.",
             "InventoryName": "A branded company mug."
         },
         "A pen": {
             "ItemDescription": "A pen lies on a table.",
-            "PickupMessage": "You take the pen with you.",
+            "PickUpMessage": "You take the pen with you.",
             "InventoryName": "A branded company pen."
         }
     }

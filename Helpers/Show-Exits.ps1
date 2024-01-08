@@ -7,13 +7,13 @@ function Show-Exits {
         Shows the possible exits of the current room. Displays locked doors with parentheses.
     #>
 
-    # Very ugly code to get all possible exits from the state. Looking for a way to tidy this up.
-    [array]$Exits = ($Map."$($State.CurrentRoom)".Exits | Get-Member | Where-Object { $_.Name -notin ("Equals", "GetHashCode", "GetType", "ToString") }).Name
+    # Get all possible exits according to the room data file.
+    [array]$Exits = $Map."$($State.CurrentRoom)".Exits.Keys
 
     # Write the exits of the current room to screen. Place locked doors between parentheses.
     Write-Host "[ Exits: " -NoNewline
     foreach ($Exit in $Exits) {
-        if (($Map."$($State.CurrentRoom)".ExitsTest.$Exit.LockedDoor) -eq $false) {
+        if (($Map."$($State.CurrentRoom)".Exits.$Exit.LockedDoor) -eq $false) {
             Write-Host "$Exit " -NoNewline
         }
         else {

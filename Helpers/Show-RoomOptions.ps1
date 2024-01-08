@@ -24,7 +24,9 @@ function Show-RoomOptions {
     )
 
     for ($i = 0; $i -lt $RoomOptions.Count; $i++) {
-        Write-Host "$($i+1): $($RoomOptions[$i])" -ForegroundColor Gray
+        # Make the RoomOption all lowercase, then make the first character uppercase
+        $RoomOptionsFormatted = $RoomOptions[$i].Substring(0,1).ToUpper() + $RoomOptions[$i].Substring(1).ToLower()
+        Write-Host "$($i+1): $RoomOptionsFormatted" -ForegroundColor Gray
     }
     
     Write-Host

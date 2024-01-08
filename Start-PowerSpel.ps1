@@ -87,7 +87,9 @@ while ($State.CurrentRoom -ne "495000") { # The number is the game exit room, af
     
     # Take inventory of all the items in the current room.
     $Items = @{}
-    $Map."$($State.CurrentRoom)".Items.psobject.properties | ForEach-Object { $Items[$_.Name] = $_.Value }
+    foreach ($Item in $Map."$($State.CurrentRoom)".Items.Keys) {
+        $Items.$Item = $Map."$($State.CurrentRoom)".Items.$Item
+    }    
     
     # Write the room content to screen.
     Show-Room
@@ -96,7 +98,7 @@ while ($State.CurrentRoom -ne "495000") { # The number is the game exit room, af
     $RoomOptions = @()
     if ($Items.Count -gt 0) {
         foreach ($Item in $Items.Keys) {
-            $RoomOptions += "Get $($Item.ToLower())."
+            $RoomOptions += "Get $Item."
         }
         Show-RoomOptions -RoomOptions $RoomOptions
     }
@@ -117,7 +119,7 @@ while ($State.CurrentRoom -ne "495000") { # The number is the game exit room, af
         if ($Action -like "Get *") {
             $PickUpItem = $Action.Substring(4, $($Action.Length - 5))
             $ActionMessage = $Map."$($State.CurrentRoom)".Items.$PickUpItem.PickUpMessage
-            $Map."$($State.CurrentRoom)".Items.PsObject.Properties.Remove("$PickUpItem")
+            $Map."$($State.CurrentRoom)".Items.Remove("$PickUpItem")
             $State.Inventory += $PickUpItem
             $PickUpItem = $null
         }
