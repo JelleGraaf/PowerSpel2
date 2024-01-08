@@ -82,7 +82,8 @@ $GameAchievements = Get-Content "$PSScriptRoot\Games\$Game\Data\GameAchievements
 Show-StartScreen
 
 # Main game loop
-while ($State.CurrentRoom -ne "495000") { # The number is the game exit room, after which the game ends.
+while ($State.CurrentRoom -ne "495000") {
+    # The number is the game exit room, after which the game ends.
     Clear-Host
     
     # Take inventory of all the items in the current room.
