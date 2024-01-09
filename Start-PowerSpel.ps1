@@ -157,10 +157,9 @@ while ($State.CurrentRoom -ne "495000") {
 }
 
 #########################################
-#region endgame                         #
+#region ENDING                          #
 #########################################
-#Write-Ending
-Write-Host
-Write-Host "Einde!" -ForegroundColor Green
+
+Show-Ending
 
 #endregion endgame
