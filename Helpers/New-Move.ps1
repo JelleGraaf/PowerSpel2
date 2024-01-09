@@ -57,9 +57,9 @@ function New-Move {
     }
 
     # Check to see if there is a locked door in the Direction.
-    if ($World."$($State.CurrentRoom)".Exits.$DirectionFull.LockedDoor -eq "true" ) {
-        $Script:ActionMessage = "The door in that direction is locked and you lack the key to unlock it."
-        return
+    if ($World."$($State.CurrentRoom)".Exits.$DirectionFull.LockedDoor -eq "true" -and ($State.Inventory -notcontains "Toegangspasje")) {
+            $Script:ActionMessage = "The door in that direction is locked and you lack the key to unlock it."
+            return
     }
 
     # Check to see if there is a room with the correct coordinates in the map, and an exit in the room info which corresponds with the Direction.

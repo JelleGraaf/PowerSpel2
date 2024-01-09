@@ -9,8 +9,9 @@
         },
         "East": {
             "ExitDirection": "East",
-            "ExitMessage": "<Alternate> east",
-            "LockedDoor": true
+            "ExitMessage": "You unlock the door and walk through it to the east.",
+            "LockedDoor": true,
+            "Key": "Toegangspasje"
         },
         "West": {
             "ExitDirection": "West",
@@ -19,7 +20,7 @@
         },
         "Up": {
             "ExitDirection": "Up",
-            "ExitMessage": "<Alternate> north",
+            "ExitMessage": "<Alternate> up",
             "LockedDoor": false
         }
     },
@@ -28,6 +29,11 @@
             "ItemDescription": "A mug stands on a table.",
             "PickUpMessage": "You take the mug with you.",
             "InventoryName": "A branded company mug."
+        },
+        "Toegangspasje": {
+            "ItemDescription": "Een toegangspasje ligt op een bureau.",
+            "PickUpMessage": "Je neemt het toegangspasje mee.",
+            "InventoryName": "Een toegangspasje."
         },
         "A pen": {
             "ItemDescription": "A pen lies on a table.",
