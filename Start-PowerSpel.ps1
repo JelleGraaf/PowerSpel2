@@ -48,16 +48,16 @@ $Console = $Host.UI.RawUI
 $Console.ForegroundColor = "White"
 $Console.BackgroundColor = "Black"
 
-# Import map 
+# Import rooms
 $Rooms = Get-ChildItem -Path "$PSScriptRoot\Games\$Game\Rooms\" -File -Recurse
 <# LOCAL DEV
 $Game = "Tutorial"
 $Rooms = Get-ChildItem -Path "C:\git\PowerSpel2\Games\$Game\Rooms\" -File -Recurse
 #>
-$Map = @{}
+$World = @{}
 foreach ($Room in $Rooms) {
     $RoomCoordinates = $Room.Name.Substring(4).Split('.')[0]
-    $Map.$RoomCoordinates = Get-Content $Room | ConvertFrom-Json -AsHashtable
+    $World.$RoomCoordinates = Get-Content $Room | ConvertFrom-Json -AsHashtable
 }
 
 # Prepare global variables
@@ -88,8 +88,8 @@ while ($State.CurrentRoom -ne "495000") {
     
     # Take inventory of all the items in the current room.
     $Items = @{}
-    foreach ($Item in $Map."$($State.CurrentRoom)".Items.Keys) {
-        $Items.$Item = $Map."$($State.CurrentRoom)".Items.$Item
+    foreach ($Item in $World."$($State.CurrentRoom)".Items.Keys) {
+        $Items.$Item = $World."$($State.CurrentRoom)".Items.$Item
     }    
     
     # Write the room content to screen.
@@ -119,8 +119,8 @@ while ($State.CurrentRoom -ne "495000") {
         # Remove the item from the room and add it to inventory
         if ($Action -like "Get *") {
             $PickUpItem = $Action.Substring(4, $($Action.Length - 5))
-            $ActionMessage = $Map."$($State.CurrentRoom)".Items.$PickUpItem.PickUpMessage
-            $Map."$($State.CurrentRoom)".Items.Remove("$PickUpItem")
+            $ActionMessage = $World."$($State.CurrentRoom)".Items.$PickUpItem.PickUpMessage
+            $World."$($State.CurrentRoom)".Items.Remove("$PickUpItem")
             $State.Inventory += $PickUpItem
             $PickUpItem = $null
         }

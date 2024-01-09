@@ -8,12 +8,12 @@ function Show-Exits {
     #>
 
     # Get all possible exits according to the room data file.
-    [array]$Exits = $Map."$($State.CurrentRoom)".Exits.Keys
+    [array]$Exits = $World."$($State.CurrentRoom)".Exits.Keys
 
     # Write the exits of the current room to screen. Place locked doors between parentheses.
     Write-Host "[ Exits: " -NoNewline
     foreach ($Exit in $Exits) {
-        if (($Map."$($State.CurrentRoom)".Exits.$Exit.LockedDoor) -eq $false) {
+        if (($World."$($State.CurrentRoom)".Exits.$Exit.LockedDoor) -eq $false) {
             Write-Host "$Exit " -NoNewline
         }
         else {

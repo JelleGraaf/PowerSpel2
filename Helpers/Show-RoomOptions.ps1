@@ -11,7 +11,7 @@ function Show-RoomOptions {
 
     .EXAMPLE
         ps> $Items = @{}
-        ps> $Map."$($State.CurrentRoom)".Items.psobject.properties | ForEach-Object { $Items[$_.Name] = $_.Value }
+        ps> $World."$($State.CurrentRoom)".Items.psobject.properties | ForEach-Object { $Items[$_.Name] = $_.Value }
         ps> $RoomOptions = @()
         ps> foreach ($Item in $Items.Keys) { $RoomOptions += "Get $($Item.ToLower())." }
         

@@ -57,16 +57,16 @@ function New-Move {
     }
 
     # Check to see if there is a locked door in the Direction.
-    if ($Map."$($State.CurrentRoom)".Exits.$DirectionFull.LockedDoor -eq "true" ) {
+    if ($World."$($State.CurrentRoom)".Exits.$DirectionFull.LockedDoor -eq "true" ) {
         $Script:ActionMessage = "The door in that direction is locked and you lack the key to unlock it."
         return
     }
 
     # Check to see if there is a room with the correct coordinates in the map, and an exit in the room info which corresponds with the Direction.
-    if ($Map.Keys -contains $Destinationroom -and (($Map."$($State.CurrentRoom)".Exits).$DirectionFull)) {
+    if ($World.Keys -contains $Destinationroom -and (($World."$($State.CurrentRoom)".Exits).$DirectionFull)) {
         # Fill ActionMessage with provided ExitMessage, or the DefaultMoveMessage when no ExitMessage exists.
-        if ($null -ne ($Map."$($State.CurrentRoom)".Exits).$DirectionFull.ExitMessage) {
-            $Script:ActionMessage = ($Map."$($State.CurrentRoom)".Exits).$DirectionFull.ExitMessage
+        if ($null -ne ($World."$($State.CurrentRoom)".Exits).$DirectionFull.ExitMessage) {
+            $Script:ActionMessage = ($World."$($State.CurrentRoom)".Exits).$DirectionFull.ExitMessage
         }
         else {
             $Script:ActionMessage = $DefaultMoveMessage

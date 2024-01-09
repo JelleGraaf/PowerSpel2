@@ -24,11 +24,11 @@ function Show-Room {
     }
 
     # Write room title to screen.
-    Write-Host "[$($Map."$($State.CurrentRoom)".RoomTitle)]" -BackgroundColor White -ForegroundColor Black
+    Write-Host "[$($World."$($State.CurrentRoom)".RoomTitle)]" -BackgroundColor White -ForegroundColor Black
     Write-Host
     
     # Write room description to screen.
-    Write-WordWrapHost "$($Map."$($State.CurrentRoom)".RoomDescription)"
+    Write-WordWrapHost "$($World."$($State.CurrentRoom)".RoomDescription)"
 
     # Write exits to screen.
     Show-Exits
