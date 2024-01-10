@@ -137,23 +137,7 @@ while ($State.CurrentRoom -ne "495000") {
         $ActionMessage = "Invalid input, try again."
     }
     
-    # Check for completed achievements.
-    ## Collector
-    if ($State.Inventory -contains "A pen" -and $State.Inventory -contains "A mug") {
-        $AchievementName = "Collector"
-        if ($GameAchievements.Keys -contains $AchievementName) {
-            Invoke-CompleteAchievement -AchievementName $AchievementName
-        }
-    }
-
-    ## Attic explorer
-    if ($State.CurrentRoom -eq 505001) {
-        $AchievementName = "Attic explorer"
-        if ($GameAchievements.Keys -contains $AchievementName) {
-            Invoke-CompleteAchievement -AchievementName $AchievementName
-        }
-
-    }
+    Invoke-AchievementCheck
 }
 
 #########################################
