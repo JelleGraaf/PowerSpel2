@@ -10,6 +10,9 @@ function Show-Room {
     Show-Header
     Write-Host
 
+    # Write map to screen
+    Show-Map
+
     # Write previous action to screen, if any.
     if ($ActionMessage) {
         Write-WordWrapHost $ActionMessage -Color Green
