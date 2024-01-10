@@ -31,7 +31,7 @@ function Show-Ending {
     Write-Host
 
 
-    # Some if statements here. Show things in green for what the played has accomplished and in red for what was skipped.
+    # Attic explorer achievement
     Start-Sleep 1
     if ($State.Achievements -contains "Attic explorer") {
         Write-Host "You have visted the attic. Seen any ghosts?" -ForegroundColor Green
@@ -41,6 +41,7 @@ function Show-Ending {
     }
     Start-Sleep 1
 
+    # Collector achievement
     if ($State.Achievements -contains "Collector") {
         Write-Host "You have collected both the mug and the pen. You hoarder, you!" -ForegroundColor Green
     }
@@ -49,5 +50,7 @@ function Show-Ending {
     }
     Start-Sleep 1
 
+    # Rooms visited
+    Write-Host "You visited $($State.RoomsVisited.Count) out of $($World.count -1) unique rooms." -ForegroundColor Yellow
     Write-Host "Einde" -ForegroundColor Green
 }

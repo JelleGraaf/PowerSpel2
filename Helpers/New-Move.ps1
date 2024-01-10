@@ -71,7 +71,12 @@ function New-Move {
         else {
             $Script:ActionMessage = $DefaultMoveMessage
         }
-        $Script:State.CurrentRoom = $DestinationRoom
+        $State.CurrentRoom = $DestinationRoom
+        # Add the new room to the State, for statistics.
+        if ($State.RoomsVisited -notcontains $DestinationRoom) {
+            $State.RoomsVisited += $DestinationRoom
+        }
+        
     }
     else {
         $Script:ActionMessage = "You can't go that way. Try again."
