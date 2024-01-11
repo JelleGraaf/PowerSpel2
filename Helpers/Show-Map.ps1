@@ -17,8 +17,8 @@ function Show-Map {
 
     Write-Host
     Write-Host "Map here" -ForegroundColor Magenta
-    [string]$CurrentFloor = $($State.CurrentRoom).ToString().substring(4)
-    [array]$CurrentFloorRooms = ($World.Keys | Where-Object { $_ -like "*$CurrentFloor" }) | Sort-Object
+    [string]$z = $($State.CurrentRoom).ToString().substring(4)
+    [array]$CurrentFloorRooms = ($World.Keys | Where-Object { $_ -like "*$z" }) | Sort-Object
 
     # Sort the rooms by y-axis (to make entire rows)
     $CurrentFloorRoomsRows = $CurrentFloorRooms | Group-Object { [int]$_.Substring(2, 2) }
@@ -36,7 +36,7 @@ function Show-Map {
     for ($y = 60; $y -ge 41; $y--) {
         # Loop through the x-axis (20 rooms wide)
         for ($x = 41; $x -le 60; $x++) {
-            if ($CurrentFloorRooms -contains [string]$x+[string]$y+[string]$z) {
+            if ($CurrentFloorRooms -contains $x.ToString()+$y.ToString()+$z.ToString()) {
                 Write-Host "X" -ForegroundColor Red -NoNewline
             } else {
                 Write-Host "o" -NoNewline
