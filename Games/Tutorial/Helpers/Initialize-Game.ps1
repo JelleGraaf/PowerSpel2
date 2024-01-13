@@ -6,4 +6,5 @@ function Initialize-Game {
     
     $Script:MapOn = $true # Turn displaying the map on or off. Valid options: $true, $false
     $Script:MapStyle = "Default" # Select the map style. Valid options: Default
+    $Script:StartRoom = 505000 # Enter the coordinates of the room where the game starts. Valid options: any room number in your game (six digits).
 }

@@ -1,18 +1,14 @@
 {
-    "RoomTitle": "515000",
-    "RoomDescription": "This is the longer description of what is inside the room.",
+    "RoomTitle": "The second room",
+    "RoomDescription": "Congratulations! You just made your first move. As you can see in the green action message, you have walked east to a different room. You can keep track of where you are on the map above. See that yellow X? That is you. Keep on moving to the east.",
     "Exits": {
-        "North": {
-            "ExitDirection": "North",
+        "East": {
+            "ExitDirection": "East",
             "LockedDoor": false
         },
         "West": {
             "ExitDirection": "West",
-            "ExitMessage": "You walk to the west and the door slams shut behind you.",
             "LockedDoor": false
         }
-    },
-    "Items": {
     }
-
 }

@@ -5,19 +5,12 @@ function Invoke-AchievementCheck {
     #>
 
     # Check for completed achievements.
-    ## Collector
-    if ($State.Inventory -contains "A pen" -and $State.Inventory -contains "A mug") {
-        $AchievementName = "Collector"
+    ## First move
+    if ($State.CurrentRoom -eq 515000) {
+        $AchievementName = "First Move"
         if ($GameAchievements.Keys -contains $AchievementName) {
             Invoke-CompleteAchievement -AchievementName $AchievementName
         }
     }
 
-    ## Attic explorer
-    if ($State.CurrentRoom -eq 505001) {
-        $AchievementName = "Attic explorer"
-        if ($GameAchievements.Keys -contains $AchievementName) {
-            Invoke-CompleteAchievement -AchievementName $AchievementName
-        }
-    }
 }
