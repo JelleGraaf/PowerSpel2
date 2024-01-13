@@ -13,38 +13,142 @@ function Show-Map {
         This part is the most ugly code you'll find in the game. I'm not proud of it, but I will hide behind
         the reasoning "If it looks stupid but it works, it ain't stupid". Maybe, some day, I will rewrite this
         to be proper logical and readable code.
+
+        Makes use of symbols from the ASCII table:
+        124: |
+        180: ┤
+        191: ┐
+        192: └
+        193: ┴
+        194: ┬
+        195: ├
+        196: ─
+        197: ┼
+        217: ┘
+        218: ┌
+
+            ┌─┬─┐
+            |   |
+            ├ ┼ ┤
+            | | |
+          ┌─┼ ┼ ┤
+          |   | |
+          └─┴─┴─┘
     #>
 
-    Write-Host
-    Write-Host "Map here" -ForegroundColor Magenta
+    $MapLeftBoundary = 40   # The lowest x-axis number to display on the map
+    $MapRightBoundary = 60  # The highest x-axis number to display on the map
+    $MapBottomBoundary = 45 # The lowest y-axis number to display on the map
+    $MapTopBoundary = 55    # The highest y-axis number to display on the map
     [string]$z = $($State.CurrentRoom).ToString().substring(4)
     [array]$CurrentFloorRooms = ($World.Keys | Where-Object { $_ -like "*$z" }) | Sort-Object
 
     # Sort the rooms by y-axis (to make entire rows)
     $CurrentFloorRoomsRows = $CurrentFloorRooms | Group-Object { [int]$_.Substring(2, 2) }
     
-    # Determine the border coordinates of the map
-    #$FirstRowNumber = [convert]::ToInt32($CurrentFloorRoomsRows.Name[0])
-    #$LastRowNumber = [convert]::ToInt32($CurrentFloorRoomsRows.Name[-1])
+    # Sort the rooms by x-axis (to make entire columns)
+    $CurrentFloorRoomsColumns = $CurrentFloorRooms | Group-Object { [int]$_.Substring(0, 2) }
     
-    #$CurrentFloorRoomsColumns = $CurrentFloorRooms | Group-Object { [int]$_.Substring(0, 2) }
-    #$FirstRowNumber = [convert]::ToInt32($CurrentFloorRoomsColumns.Name[0])
-    #$LastRowNumber = [convert]::ToInt32($CurrentFloorRoomsColumns.Name[-1])
+    # Check to see if the map falls outside the displayable range
+    # Determine the border coordinates of the map
+    $LowestRowNumber = [convert]::ToInt32($CurrentFloorRoomsRows.Name[0])
+    $HighestRowNumber = [convert]::ToInt32($CurrentFloorRoomsRows.Name[-1])
+    $LowestColumnNumber = [convert]::ToInt32($CurrentFloorRoomsColumns.Name[0])
+    $HighestColumnNumber = [convert]::ToInt32($CurrentFloorRoomsColumns.Name[-1])
+    if ($LowestRowNumber -lt $MapBottomBoundary -or $HighestRowNumber -gt $MapTopBoundary -or $LowestColumnNumber -lt $MapLeftBoundary -or $HighestColumnNumber -gt $MapRightBoundary ) { 
+        throw "Current floor size is bigger than the map can display. Remove rooms, turn off the map, or increase map size."
+    }
 
-
-    # Loop through the y-axis (20 rooms high)
-    for ($y = 60; $y -ge 41; $y--) {
-        # Loop through the x-axis (20 rooms wide)
-        for ($x = 41; $x -le 60; $x++) {
-            if ($CurrentFloorRooms -contains $x.ToString()+$y.ToString()+$z.ToString()) {
-                Write-Host "X" -ForegroundColor Red -NoNewline
-            } else {
-                Write-Host "o" -NoNewline
+    Write-Host
+    # Loop through the y-axis.
+    for ($y = $MapTopBoundary; $y -ge $MapBottomBoundary ; $y--) {
+        # Loop through the x-axis.
+        for ($x = $MapLeftBoundary; $x -le $MapRightBoundary; $x++) {
+            $CurrentMapRoom = $x.ToString() + $y.ToString() + $z.ToString()
+            # Trigger if there is a room at the current coordinates.
+            if ($CurrentFloorRooms -contains $CurrentMapRoom) {
+                # Write an X inside a room if the player is there.
+                if ($State.CurrentRoom -eq $CurrentMapRoom) {
+                    Write-Host "X" -ForegroundColor Yellow -NoNewline
+                }
+                # Write a space for an empty room.
+                else {
+                    Write-Host " " -NoNewline
+                }
+                if ($World."$CurrentMapRoom".Exits.East) {
+                    # Locked doors are displayed like walls, but colored red. Open exits are displayed with a space.
+                    if ($World."$CurrentMapRoom".Exits.East.LockedDoor -eq $true) {
+                        Write-Host "|" -ForegroundColor Red -NoNewline
+                    }
+                    else {
+                        Write-Host " " -NoNewline
+                    }
+                }
+                # Always place a wall to the east of a room, if it doesn't have an exit in that direction.
+                else {
+                    Write-Host "|" -NoNewline
+                }
+            } 
+            # If a room to the east of a non-existent room exists, write a wall in between.
+            elseif ($CurrentFloorRooms -contains ($x + 1).ToString() + $y.ToString() + $z.ToString()) {
+                Write-Host " |" -NoNewline
+            }
+            # Write TODO for a non-existent room
+            else {
+                Write-Host " ·" -NoNewline
             }
         }
         Write-Host
-    }
 
-    # Loop through all the rooms (sorted)
-    
+        # Loop through the x-axis a second time, for the line with walls and corner pieces
+        Write-Host "*" -ForegroundColor DarkBlue -NoNewline
+        for ($x = $MapLeftBoundary; $x -le $MapRightBoundary; $x++) {
+            $CurrentMapRoom = $x.ToString() + $y.ToString() + $z.ToString()
+            $RoomToTheEast = ($x + 1).ToString() + $y.ToString() + $z.ToString()
+            $RoomToTheSouth = $x.ToString() + ($y - 1).ToString() + $z.ToString()
+            $RoomToTheSouthEast = ($x + 1).ToString() + ($y - 1).ToString() + $z.ToString()
+
+            ### CORNER PIECE
+            # Room to the east, not to the south or southeast.
+            if ($CurrentFloorRooms -contains $RoomToTheEast -and $CurrentFloorRooms -notcontains $RoomToTheSouth -and $CurrentFloorRooms -notcontains $RoomToTheSouthEast) {
+                Write-Host "└" -NoNewline
+            }
+            # Room to the south, not to the east or southeast.
+            elseif ($CurrentFloorRooms -notcontains $RoomToTheEast -and $CurrentFloorRooms -contains $RoomToTheSouth -and $CurrentFloorRooms -notcontains $RoomToTheSouthEast) {
+                if ($CurrentFloorRooms -contains $CurrentMapRoom) { Write-Host "┤" -NoNewline }
+                else { Write-Host "┐" -NoNewline }
+            }
+            # Room to the southeast, not to the east or south.
+            elseif ($CurrentFloorRooms -notcontains $RoomToTheEast -and $CurrentFloorRooms -notcontains $RoomToTheSouth -and $CurrentFloorRooms -contains $RoomToTheSouthEast) {
+                Write-Host "┌" -NoNewline
+            }
+            # Rooms to the south and southeast, not to the east.
+            elseif ($CurrentFloorRooms -notcontains $RoomToTheEast -and $CurrentFloorRooms -contains $RoomToTheSouth -and $CurrentFloorRooms -contains $RoomToTheSouthEast) {
+                Write-Host "┬" -NoNewline
+            }
+            # Rooms to the east and southeast, not to the south.
+            elseif ($CurrentFloorRooms -contains $RoomToTheEast -and $CurrentFloorRooms -notcontains $RoomToTheSouth -and $CurrentFloorRooms -contains $RoomToTheSouthEast) {
+                Write-Host "├" -NoNewline
+            }
+            # Rooms to the east, south, and southeast.
+            elseif ($CurrentFloorRooms -contains $RoomToTheEast -and $CurrentFloorRooms -contains $RoomToTheSouth -and $CurrentFloorRooms -contains $RoomToTheSouthEast) {
+                Write-Host "┼" -NoNewline
+            }
+            # No rooms to south, east or southeast.
+            elseif ($CurrentFloorRooms -notcontains $RoomToTheEast -and $CurrentFloorRooms -notcontains $RoomToTheSouth -and $CurrentFloorRooms -notcontains $RoomToTheSouthEast) {
+                if ($CurrentFloorRooms -contains $CurrentMapRoom) { Write-Host "┘" -NoNewline}
+                else { Write-Host " " -NoNewline}
+            } 
+            # Display $ if something unexpected happens.
+            else {
+                Write-Host "$" -NoNewline -ForegroundColor Red
+            }
+
+
+            ### WALL PIECE
+            Write-Host "─" -NoNewline
+        }
+        Write-Host
+
+    }
 }
