@@ -54,6 +54,7 @@ $Console.BackgroundColor = "Black"
 # Import rooms
 $Rooms = Get-ChildItem -Path "$PSScriptRoot\Games\$Game\Rooms\" -File -Recurse | Where-Object {$_.Name -ne "_RoomTemplate.json"}
 
+# Prepare variables
 <# LOCAL DEV
 $Game = "Tutorial"
 $Rooms = Get-ChildItem -Path "C:\git\PowerSpel2\Games\$Game\Rooms\" -File -Recurse | Where-Object {$_.Name -ne "_RoomTemplate.json"}
@@ -64,7 +65,6 @@ foreach ($Room in $Rooms) {
     $World.$RoomCoordinates = Get-Content $Room | ConvertFrom-Json -AsHashtable
 }
 
-# Prepare global variables
 $State = @{
     CurrentRoom  = 505000
     Inventory    = @() # Don't fill this with text longer than the respective header column, or it will mess up the visualization.
@@ -75,6 +75,7 @@ $State = @{
 $GameAchievements = Get-Content ".\Games\$Game\Data\GameAchievements.json" | ConvertFrom-Json -AsHashtable
 #>
 $GameAchievements = Get-Content "$PSScriptRoot\Games\$Game\Data\GameAchievements.json" | ConvertFrom-Json -AsHashtable
+$GameState = "Running"
 
 #endregion initialization
 
@@ -87,7 +88,7 @@ $GameAchievements = Get-Content "$PSScriptRoot\Games\$Game\Data\GameAchievements
 Show-StartScreen
 
 # Main game loop
-while ($State.CurrentRoom -ne "495000") {
+while ($GameState -ne "Quit") {
     # The number is the game exit room, after which the game ends.
     Clear-Host
     
@@ -136,6 +137,9 @@ while ($State.CurrentRoom -ne "495000") {
     }
     elseif ($PlayerInput -eq 0) {
         Show-Achievements
+    }
+    elseif ($PlayerInput -eq "quit") {
+        $GameState = "quit"
     }
     else {
         # Invalid input gets processed here.
