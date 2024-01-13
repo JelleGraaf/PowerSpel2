@@ -8,7 +8,7 @@
         },
         "South": {
             "ExitDirection": "South",
-            "LockedDoor": true
+            "LockedDoor": false
         }
     },
     "Items": {

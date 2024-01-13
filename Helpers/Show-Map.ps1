@@ -26,14 +26,6 @@ function Show-Map {
         197: ┼
         217: ┘
         218: ┌
-
-            ┌─┬─┐
-            |   |
-            ├ ┼ ┤
-            | | |
-          ┌─┼ ┼ ┤
-          |   | |
-          └─┴─┴─┘
     #>
 
     $MapLeftBoundary = 40   # The lowest x-axis number to display on the map
@@ -95,7 +87,7 @@ function Show-Map {
             }
             # Write TODO for a non-existent room
             else {
-                Write-Host " ·" -ForegroundColor Gray -NoNewline
+                Write-Host " ·" -ForegroundColor DarkGray -NoNewline
             }
         }
         Write-Host
@@ -132,7 +124,7 @@ function Show-Map {
                     Write-Host "─" -NoNewline
                 }
                 else {
-                    Write-Host " " -NoNewline
+                    Write-Host " " -NoNewline 
                 }
             }
 
