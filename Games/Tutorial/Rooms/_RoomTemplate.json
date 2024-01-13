@@ -30,7 +30,8 @@
         "Down": {
             "ExitDirection": "Down",
             "ExitMessage": "(optional) A message for walking down that differs from the default message.",
-            "LockedDoor": false
+            "LockedDoor": true,
+            "Key": "A simple key"
         }
     },
     "Items": {

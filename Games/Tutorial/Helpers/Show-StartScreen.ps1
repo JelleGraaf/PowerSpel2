@@ -48,7 +48,7 @@
     # Write explanation
     Write-WordWrapHost "Welcome to the PowerSpel tutorial!"
     Write-Host ""
-    Write-WordWrapHost "In this game, you will be introduced to the basic game mechanics. You can practice with the commands and after that, you are ready to try a real game. What are you waiting for? Jump right in!"
+    Write-WordWrapHost "In this game, you will be introduced to the basic game mechanics. You can practice with the commands. After that, you are ready to try a real game. What are you waiting for? Jump right in!"
     Write-Host ""
     Pause
 }

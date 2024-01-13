@@ -6,8 +6,8 @@ function Invoke-AchievementCheck {
 
     # Check for completed achievements.
     ## First move
-    if ($State.CurrentRoom -eq 515000) {
-        $AchievementName = "First Move"
+    if ($State.CurrentRoom -eq 525000) {
+        $AchievementName = "Completer of achievements"
         if ($GameAchievements.Keys -contains $AchievementName) {
             Invoke-CompleteAchievement -AchievementName $AchievementName
         }

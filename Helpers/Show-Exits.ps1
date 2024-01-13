@@ -11,7 +11,8 @@ function Show-Exits {
     [array]$Exits = $World."$($State.CurrentRoom)".Exits.Keys
 
     # Write the exits of the current room to screen. Place locked doors between parentheses.
-    Write-Host "[ Exits: " -NoNewline
+    Write-Host "[" -ForegroundColor Blue -NoNewline
+    Write-Host " Exits: " -NoNewline
     foreach ($Exit in $Exits) {
         if (($World."$($State.CurrentRoom)".Exits.$Exit.LockedDoor) -eq $false) {
             Write-Host "$Exit " -NoNewline
@@ -20,5 +21,5 @@ function Show-Exits {
             Write-Host "($Exit) " -NoNewline
         }
     }
-    Write-Host "]"
+    Write-Host "]" -ForegroundColor Blue
 }

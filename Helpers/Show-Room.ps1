@@ -21,7 +21,7 @@ function Show-Room {
 
     # Write completed achievements to screen, if any.
     if ($CompletedAchievement) {
-        Write-Host "You have completed the achievement '$CompletedAchievement'!" -ForegroundColor Yellow
+        Write-Host ">>> You have completed the achievement '$CompletedAchievement'! <<<" -ForegroundColor Yellow
         Write-Host
         $Script:CompletedAchievement = $null
     }

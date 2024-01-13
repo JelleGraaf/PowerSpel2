@@ -1,0 +1,26 @@
+{
+    "RoomTitle": "Locked doors and keys",
+    "RoomDescription": "Sometimes, you will encounter a locked door. Locked doors are presented as red lines on the map and the direction the door leads to, is surrounded by parentheses. Locked doors can be unlocked with the right key. Try to move to the southern room now and notice that it's not possible. Move to the next room to the south after that.",
+    "Exits": {
+        "North": {
+            "ExitDirection": "North",
+            "LockedDoor": false
+        },
+        "West": {
+            "ExitDirection": "West",
+            "LockedDoor": false
+        },
+        "South": {
+            "ExitDirection": "South",
+            "LockedDoor": true,
+            "Key": "A simple key"
+        }
+    },
+    "Items": {
+        "A simple key": {
+            "ItemDescription": "A simple key lies on the floor.",
+            "PickUpMessage": "You pick up the key and put it in your pocket.",
+            "InventoryName": "A simple key"
+        }
+    }
+}

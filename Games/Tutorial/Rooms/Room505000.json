@@ -1,6 +1,6 @@
 {
     "RoomTitle": "Tutorial start room",
-    "RoomDescription": "Welcome to the tutorial game for PowerSpel. This tutorial will show you the ropes for the main game(s). It is a text-based game, in the style of Multi-Users Dungeons (MUDs). In that fashing, you move around in the cardinal directions and up and down. Give it a try: enter 'e' (without the quotes) to move to the east.",
+    "RoomDescription": "Welcome to the tutorial game for PowerSpel. It is a text-based game, in the style of Multi-User Dungeons (MUDs). In that fashion, you move around in the cardinal directions and up and down. Use only the first letter of a direction, to go there. Give it a try: enter 'e' (without the quotes) to move to the east.",
     "Exits": {
         "East": {
             "ExitDirection": "East",
