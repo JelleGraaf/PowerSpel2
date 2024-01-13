@@ -6,3 +6,4 @@
   - Tips
 - Fill CONTRIBUTING.md
 - Fill README.md
+- Add the Pentest game
