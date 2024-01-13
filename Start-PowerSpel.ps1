@@ -43,6 +43,9 @@ foreach ($GameHelper in $GameHelpers) {
     . $GameHelper.fullname
 }
 
+# Load global setting for the loaded game
+Initialize-Game
+
 # Force console colors
 $Console = $Host.UI.RawUI
 $Console.ForegroundColor = "White"

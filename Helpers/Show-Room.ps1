@@ -4,15 +4,15 @@ function Show-Room {
         Displays the content of the room to screen.
     #>
 
-    #Write-Host "DEV: Currentroom: $($State.CurrentRoom)." -ForegroundColor Magenta
-
     # Write header to screen.
     Show-Header
     Write-Host
 
-    # Write map to screen
-    Show-Map
-
+    # Write map to screen, if enabled.
+    if ($MapOn -eq $true) {
+        Show-Map
+    }
+    
     # Write previous action to screen, if any.
     if ($ActionMessage) {
         Write-WordWrapHost $ActionMessage -Color Green
