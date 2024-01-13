@@ -95,23 +95,52 @@ function Show-Map {
             }
             # Write TODO for a non-existent room
             else {
-                Write-Host " ·" -NoNewline
+                Write-Host " ·" -ForegroundColor Gray -NoNewline
             }
         }
         Write-Host
 
         # Loop through the x-axis a second time, for the line with walls and corner pieces
-        Write-Host "*" -ForegroundColor DarkBlue -NoNewline
         for ($x = $MapLeftBoundary; $x -le $MapRightBoundary; $x++) {
             $CurrentMapRoom = $x.ToString() + $y.ToString() + $z.ToString()
             $RoomToTheEast = ($x + 1).ToString() + $y.ToString() + $z.ToString()
             $RoomToTheSouth = $x.ToString() + ($y - 1).ToString() + $z.ToString()
             $RoomToTheSouthEast = ($x + 1).ToString() + ($y - 1).ToString() + $z.ToString()
 
-            ### CORNER PIECE
+            ## DRAW WALL PIECES
+            # Trigger if the current position contains a room.
+            if ($CurrentFloorRooms -contains $CurrentMapRoom) {
+                # Trigger if there is a room to the south.
+                if ($CurrentFloorRooms -contains $RoomToTheSouth -and $World."$CurrentMapRoom".Exits.South) {
+                    # Trigger if there is a locked door to the south.
+                    if ($World."$CurrentMapRoom".Exits.South.LockedDoor -eq $true) {
+                        Write-Host "─" -ForegroundColor Red -NoNewline
+                    }
+                    else {
+                        Write-Host " " -NoNewline
+                    }
+                }
+                # Trigger if there is no room to the south.
+                else {
+                    Write-Host "─" -NoNewline
+                }
+            }
+            # Trigger if the current position does not contain a room.
+            else {
+                # Trigger if there is a room to the south.
+                if ($CurrentFloorRooms -contains $RoomToTheSouth) {
+                    Write-Host "─" -NoNewline
+                }
+                else {
+                    Write-Host " " -NoNewline
+                }
+            }
+
+            ## DRAW CORNER PIECES
             # Room to the east, not to the south or southeast.
             if ($CurrentFloorRooms -contains $RoomToTheEast -and $CurrentFloorRooms -notcontains $RoomToTheSouth -and $CurrentFloorRooms -notcontains $RoomToTheSouthEast) {
-                Write-Host "└" -NoNewline
+                if ($CurrentFloorRooms -contains $CurrentMapRoom) { Write-Host "┴" -NoNewline }
+                else { Write-Host "└" -NoNewline }
             }
             # Room to the south, not to the east or southeast.
             elseif ($CurrentFloorRooms -notcontains $RoomToTheEast -and $CurrentFloorRooms -contains $RoomToTheSouth -and $CurrentFloorRooms -notcontains $RoomToTheSouthEast) {
@@ -136,19 +165,14 @@ function Show-Map {
             }
             # No rooms to south, east or southeast.
             elseif ($CurrentFloorRooms -notcontains $RoomToTheEast -and $CurrentFloorRooms -notcontains $RoomToTheSouth -and $CurrentFloorRooms -notcontains $RoomToTheSouthEast) {
-                if ($CurrentFloorRooms -contains $CurrentMapRoom) { Write-Host "┘" -NoNewline}
-                else { Write-Host " " -NoNewline}
+                if ($CurrentFloorRooms -contains $CurrentMapRoom) { Write-Host "┘" -NoNewline }
+                else { Write-Host " " -NoNewline }
             } 
             # Display $ if something unexpected happens.
             else {
                 Write-Host "$" -NoNewline -ForegroundColor Red
             }
-
-
-            ### WALL PIECE
-            Write-Host "─" -NoNewline
         }
         Write-Host
-
     }
 }
