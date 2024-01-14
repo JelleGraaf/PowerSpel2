@@ -32,18 +32,22 @@ Function Write-WordWrapHost {
     $LineLength = 0
     
     # Write each word in the array to screen, checking if it fits on current line. If not, write to next line.
+    # You can force a new line with "!." (exclamation mark period).
     ForEach ($Word in $TextArray) {
-        if ($Word.Length -le ($Width - $LineLength)) {
+        if ($Word -eq "!.") {
+            Write-Host
+            $LineLength = 0 + $Word.Length        
+        }
+        elseif ($Word.Length -le ($Width - $LineLength)) {
             Write-Host "$Word " -nonewline -ForegroundColor $Color
             $LineLength += $Word.Length + 1 # Add the extra 1 to account for the space that will be added to the word.
         }
         else {
-            Write-host ""
+            Write-host
             Write-Host "$Word " -NoNewline -ForegroundColor $Color
             $LineLength = 0 + $Word.Length
         }
 
     }
-    
     Write-Host 
 }
