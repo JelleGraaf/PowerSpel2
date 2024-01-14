@@ -69,7 +69,7 @@ $State = @{
     CurrentRoom  = $StartRoom
     Inventory    = @() # Don't fill this with text longer than the respective header column, or it will mess up the visualization.
     Achievements = @() # Don't fill this with text longer than the respective header column, or it will mess up the visualization.
-    RoomsVisited = @()
+    RoomsVisited = @($StartRoom)
 }
 <# LOCAL DEV
 $GameAchievements = Get-Content ".\Games\$Game\Data\GameAchievements.json" | ConvertFrom-Json -AsHashtable
