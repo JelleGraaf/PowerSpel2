@@ -62,7 +62,7 @@ function Show-Map {
                 if ($State.CurrentRoom -eq $CurrentMapRoom) {
                     Write-Host "X" -ForegroundColor Yellow -NoNewline
                 }
-                # Write X when there is an exit up AND down.
+                # Write X when there is an exit up and down.
                 elseif ($World."$CurrentMapRoom".Exits.Keys -contains "Up" -and $World."$CurrentMapRoom".Exits.Keys -contains "Down") {
                     Write-Host "♢" -ForegroundColor DarkGray -NoNewline
                 }
@@ -156,11 +156,16 @@ function Show-Map {
             }
             # Rooms to the south and southeast, not to the east.
             elseif ($CurrentFloorRooms -notcontains $RoomToTheEast -and $CurrentFloorRooms -contains $RoomToTheSouth -and $CurrentFloorRooms -contains $RoomToTheSouthEast) {
-                Write-Host "┬" -NoNewline
+                if ($CurrentFloorRooms -contains $CurrentMapRoom) { Write-Host "┼" -NoNewline }
+                else { Write-Host "┬" -NoNewline }
             }
             # Rooms to the east and southeast, not to the south.
             elseif ($CurrentFloorRooms -contains $RoomToTheEast -and $CurrentFloorRooms -notcontains $RoomToTheSouth -and $CurrentFloorRooms -contains $RoomToTheSouthEast) {
                 Write-Host "├" -NoNewline
+            }
+            # Rooms to the east and south, not to the southeast.
+            elseif ($CurrentFloorRooms -contains $RoomToTheEast -and $CurrentFloorRooms -contains $RoomToTheSouth -and $CurrentFloorRooms -notcontains $RoomToTheSouthEast) {
+                Write-Host "┼" -NoNewline
             }
             # Rooms to the east, south, and southeast.
             elseif ($CurrentFloorRooms -contains $RoomToTheEast -and $CurrentFloorRooms -contains $RoomToTheSouth -and $CurrentFloorRooms -contains $RoomToTheSouthEast) {
