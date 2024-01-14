@@ -51,6 +51,6 @@ function Show-Ending {
     Start-Sleep 1
 
     # Rooms visited
-    Write-Host "You visited $($State.RoomsVisited.Count) out of $($World.count -1) unique rooms." -ForegroundColor Yellow
+    Write-Host "You visited $($State.RoomsVisited.Count) out of $($World.count) unique rooms." -ForegroundColor Yellow
     Write-Host "Einde" -ForegroundColor Green
 }
