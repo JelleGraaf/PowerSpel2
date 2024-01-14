@@ -1,13 +1,14 @@
 {
-    "RoomTitle": "The second room",
+    "RoomTitle": "The map",
     "RoomDescription": "Congratulations! You just made your first move. As you can see in the green action message, you have walked east to a different room. You can keep track of where you are on the map above. See that yellow X? That is you. Keep on moving to the east.",
     "Exits": {
-        "East": {
-            "ExitDirection": "East",
-            "LockedDoor": false
-        },
         "West": {
             "ExitDirection": "West",
+            "LockedDoor": false
+        },
+        "Down": {
+            "ExitDirection": "Down",
+            "ExitMessage": "You climb down some stairs.",
             "LockedDoor": false
         }
     }

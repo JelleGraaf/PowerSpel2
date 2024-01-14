@@ -1,5 +1,7 @@
 # TO DO list
 
+- Fix map bugs (after seeing tutorial rooms)
+- Add objects to interact with
 - Add tutorial content
 - Add a manual on how to add a game
   - Requirements

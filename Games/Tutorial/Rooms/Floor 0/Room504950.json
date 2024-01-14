@@ -1,0 +1,10 @@
+{
+    "RoomTitle": "The end",
+    "RoomDescription": "That's it! You have reached the end of the tutorial. To summarize: !. - Move through the game with n, e, s, w, u and d. !. - Use the map to see where you are and what is there to be discovered. !. - Enter 0 to see the uncompleted achievements. !. - Open locked doors (red) with their respective keys. !. - Pick up items or interact with objects with the extra options in the room (1-9). !. One last thing: you can end the game at any point by typing quit. Type quit now to end this tutorial. Perhaps play a real game?",
+    "Exits": {
+        "East": {
+            "ExitDirection": "East",
+            "LockedDoor": false
+        }
+    }
+}

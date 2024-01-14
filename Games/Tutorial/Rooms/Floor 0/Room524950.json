@@ -1,0 +1,27 @@
+{
+    "RoomTitle": "Keys and inventory",
+    "RoomDescription": "Every locked door has a key that opens it... hopefully. There is a key on the ground here. Pick it up by entering the extra option '1' that is available in this room. Notice that the key appears in your inventory at the top of your screen. All items you pick up go to your inventory and can be used in various ways, that will explain themselves when appropriate. !. Try to open the door to the south of here with your new key. You will find out that it still won't open. Maybe this is not the right key for that door. Move back to the east now and see if you can open that locked door by moving through it.",
+    "Exits": {
+        "East": {
+            "ExitDirection": "East",
+            "LockedDoor": false
+        },
+        "South": {
+            "ExitDirection": "South",
+            "ExitMessage": "You unlock the door with the key card and move through it.",
+            "LockedDoor": true,
+            "Key": "A key card"
+        },
+        "West": {
+            "ExitDirection": "West",
+            "LockedDoor": false
+        }
+    },
+    "Items": {
+        "A simple key": {
+            "ItemDescription": "A simple key lies on the floor.",
+            "PickUpMessage": "You pick up the key and put it in your pocket.",
+            "InventoryName": "A simple key"
+        }
+    }
+}

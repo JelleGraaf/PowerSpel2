@@ -1,0 +1,14 @@
+{
+    "RoomTitle": "The cellar",
+    "RoomDescription": "You're doing fine. Keep moving.",
+    "Exits": {
+        "East": {
+            "ExitDirection": "East",
+            "LockedDoor": false
+        },
+        "West": {
+            "ExitDirection": "West",
+            "LockedDoor": false
+        }
+    }
+}

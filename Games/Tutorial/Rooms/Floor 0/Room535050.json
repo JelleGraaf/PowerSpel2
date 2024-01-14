@@ -6,8 +6,9 @@
             "ExitDirection": "South",
             "LockedDoor": false
         },
-        "West": {
-            "ExitDirection": "West",
+        "Down": {
+            "ExitDirection": "Down",
+            "ExitMessage": "You climb down the ladder, back to the cellar.",
             "LockedDoor": false
         }
     }

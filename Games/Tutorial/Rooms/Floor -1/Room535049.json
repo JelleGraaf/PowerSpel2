@@ -1,0 +1,15 @@
+{
+    "RoomTitle": "The cellar",
+    "RoomDescription": "The end of the cellar. There is a ladder that leads back up to the ground floor.",
+    "Exits": {
+        "North": {
+            "ExitDirection": "North",
+            "LockedDoor": false
+        },
+        "Up": {
+            "ExitDirection": "Up",
+            "ExitMessage": "You climb up the ladder.",
+            "LockedDoor": false
+        }
+    }
+}
