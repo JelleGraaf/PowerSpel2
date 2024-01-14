@@ -14,7 +14,7 @@ function Show-Map {
         the reasoning "If it looks stupid but it works, it ain't stupid". Maybe, some day, I will rewrite this
         to be proper logical and readable code.
 
-        Makes use of symbols from the ASCII table:
+        Makes use of these symbols from the ASCII table:
         124: |
         180: ┤
         191: ┐
@@ -51,7 +51,6 @@ function Show-Map {
         throw "Current floor size is bigger than the map can display. Remove rooms, turn off the map, or increase map size."
     }
 
-    Write-Host
     # Loop through the y-axis.
     for ($y = $MapTopBoundary; $y -ge $MapBottomBoundary ; $y--) {
         # Loop through the x-axis.
