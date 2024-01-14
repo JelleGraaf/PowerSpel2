@@ -62,6 +62,18 @@ function Show-Map {
                 if ($State.CurrentRoom -eq $CurrentMapRoom) {
                     Write-Host "X" -ForegroundColor Yellow -NoNewline
                 }
+                # Write X when there is an exit up AND down.
+                elseif ($World."$CurrentMapRoom".Exits.Keys -contains "Up" -and $World."$CurrentMapRoom".Exits.Keys -contains "Down") {
+                    Write-Host "♢" -ForegroundColor DarkGray -NoNewline
+                }
+                # Write ^ when there is an exit up.
+                elseif ($World."$CurrentMapRoom".Exits.Keys -contains "Up") {
+                    Write-Host "^" -ForegroundColor DarkGray -NoNewline
+                }
+                # Write X when there is an exit down.
+                elseif ($World."$CurrentMapRoom".Exits.Keys -contains "Down") {
+                    Write-Host "v" -ForegroundColor DarkGray -NoNewline
+                }
                 # Write a space for an empty room.
                 else {
                     Write-Host " " -NoNewline
