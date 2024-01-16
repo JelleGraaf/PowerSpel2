@@ -43,6 +43,15 @@ foreach ($GameHelper in $GameHelpers) {
     . $GameHelper.fullname
 }
 
+# Import game interactables functions
+<# LOCAL DEV
+$Interactables = Get-ChildItem -Path .\Games\tutorial\Interactables -File
+#>
+$Interactables = Get-ChildItem -Path $PSScriptRoot\Games\$Game\Interactables -File
+foreach ($Interactable in $Interactables) {
+    . $Interactable.fullname
+}
+
 # Load global setting for the loaded game
 Initialize-Game
 

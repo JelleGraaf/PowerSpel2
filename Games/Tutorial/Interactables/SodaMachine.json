@@ -1,0 +1,15 @@
+{
+    "Cola": {
+        "MachineChoice": "Cola",
+        "FullName": "A can of cola",
+        "ActionMessage": "You press the button for cola and a can drops from the machine. You take it with you.",
+        "StateDescription": "A drink"
+    },
+    "Cola zero": {
+        "MachineChoice": "Cola zero",
+        "FullName": "A can of cola zero",
+        "ActionMessage": "You press the button for cola zero and a can drops from the machine. You take it with you.",
+        "StateDescription": "A drink"
+    }
+
+}
