@@ -45,9 +45,9 @@ foreach ($GameHelper in $GameHelpers) {
 
 # Import game interactables functions
 <# LOCAL DEV
-$Interactables = Get-ChildItem -Path .\Games\tutorial\Interactables -File
+$Interactables = Get-ChildItem -Path .\Games\tutorial\Interactables -File -Filter "*.ps1"
 #>
-$Interactables = Get-ChildItem -Path $PSScriptRoot\Games\$Game\Interactables -File
+$Interactables = Get-ChildItem -Path $PSScriptRoot\Games\$Game\Interactables -File -Filter "*.ps1"
 foreach ($Interactable in $Interactables) {
     . $Interactable.fullname
 }
@@ -89,7 +89,7 @@ $StartTime = Get-Date
 
 #endregion initialization
 
-
+pause
 #########################################
 #region MAIN GAME                       #
 #########################################
