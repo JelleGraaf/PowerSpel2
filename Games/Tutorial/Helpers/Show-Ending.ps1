@@ -30,27 +30,24 @@ function Show-Ending {
     Write-Host "                                 ███    ███                                      ▀                    " -ForegroundColor White
     Write-Host
 
+    # Time played
+    # XXX
 
-    # Attic explorer achievement
-    Start-Sleep 1
-    if ($State.Achievements -contains "Attic explorer") {
-        Write-Host "You have visted the attic. Seen any ghosts?" -ForegroundColor Green
+    # Completed achievements.
+    foreach ($Achievement in $State.Achievements) {
+        Write-Host "You have completed the achievement '$Achievement'" -ForegroundColor Green
     }
-    else {
-        Write-Host "You did not visit the attic. Are you sure you are OK with that?" -ForegroundColor Red
-    }
-    Start-Sleep 1
-
-    # Collector achievement
-    if ($State.Achievements -contains "Collector") {
-        Write-Host "You have collected both the mug and the pen. You hoarder, you!" -ForegroundColor Green
-    }
-    else {
-        Write-Host "You did get all available items. Next time, look closer for pick-ups!" -ForegroundColor Red
+    
+    # Uncompleted achievements.
+    foreach ($UncompletedAchievement in $GameAchievements.Keys) {
+        Write-Host "You have not completed the achievement '$Achievement'. Maybe next time" -ForegroundColor Red
     }
     Start-Sleep 1
 
-    # Rooms visited
-    Write-Host "You visited $($State.RoomsVisited.Count) out of $($World.count) unique rooms." -ForegroundColor Yellow
+
+    # Unique Rooms visited.
+    Write-Host
+    Show-ScoreMeter -ScoreName "Unique rooms visited" -ScoreValue $State.RoomsVisited.Count -ScoreMaxValue $World.count
+    
     Write-Host "Einde" -ForegroundColor Green
 }
