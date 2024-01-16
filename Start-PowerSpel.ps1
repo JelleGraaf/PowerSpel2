@@ -76,6 +76,7 @@ $GameAchievements = Get-Content ".\Games\$Game\Data\GameAchievements.json" | Con
 #>
 $GameAchievements = Get-Content "$PSScriptRoot\Games\$Game\Data\GameAchievements.json" | ConvertFrom-Json -AsHashtable
 $GameState = "Running"
+$StartTime = Get-Date
 
 #endregion initialization
 
