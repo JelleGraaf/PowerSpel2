@@ -60,7 +60,7 @@ function Show-Map {
             if ($CurrentFloorRooms -contains $CurrentMapRoom) {
                 # Write an X inside a room if the player is there.
                 if ($State.CurrentRoom -eq $CurrentMapRoom) {
-                    Write-Host "X" -ForegroundColor Yellow -NoNewline
+                    Write-Host "@" -ForegroundColor Yellow -NoNewline
                 }
                 # Write X when there is an exit up and down.
                 elseif ($World."$CurrentMapRoom".Exits.Keys -contains "Up" -and $World."$CurrentMapRoom".Exits.Keys -contains "Down") {
