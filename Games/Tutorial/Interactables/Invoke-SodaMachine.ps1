@@ -58,10 +58,11 @@ function Invoke-SodaMachine {
     # Read player action.
     $PlayerInput = Read-Host "What would you like to do?"
 
+    # TODO continue here
     if (0..9 -contains $PlayerInput) {
         Write-Host "You chose something" -ForegroundColor Cyan
-
-    } else {
+    }
+    else {
         Write-Host "Invalid choice. Try again"
         exit
     }

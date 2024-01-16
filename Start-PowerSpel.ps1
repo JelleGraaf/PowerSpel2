@@ -61,7 +61,7 @@ $Console.ForegroundColor = "White"
 $Console.BackgroundColor = "Black"
 
 # Import rooms
-$Rooms = Get-ChildItem -Path "$PSScriptRoot\Games\$Game\Rooms\" -File -Recurse | Where-Object {$_.Name -ne "_RoomTemplate.json"}
+$Rooms = Get-ChildItem -Path "$PSScriptRoot\Games\$Game\Rooms\" -File -Recurse | Where-Object { $_.Name -ne "_RoomTemplate.json" }
 
 # Prepare variables
 <# LOCAL DEV
@@ -89,7 +89,7 @@ $StartTime = Get-Date
 
 #endregion initialization
 
-pause
+
 #########################################
 #region MAIN GAME                       #
 #########################################
@@ -102,12 +102,16 @@ while ($GameState -ne "Quit") {
     # The number is the game exit room, after which the game ends.
     Clear-Host
     
-    # Take inventory of all the items in the current room.
+    # Take inventory of all the items and interactables in the current room.
     $Items = @{}
     foreach ($Item in $World."$($State.CurrentRoom)".Items.Keys) {
         $Items.$Item = $World."$($State.CurrentRoom)".Items.$Item
-    }    
-    
+    }
+    $Interactables = @{}  
+    foreach ($Interactable in $World."$($State.CurrentRoom)".Interactables.Keys) {
+        $Interactables.$Interactable = $World."$($State.CurrentRoom)".Interactables.$Interactable
+    }
+
     # Write the room content to screen.
     Show-Room
     
@@ -117,9 +121,16 @@ while ($GameState -ne "Quit") {
         foreach ($Item in $Items.Keys) {
             $RoomOptions += "Get $Item."
         }
+    }
+    if ($Interactables.Count -gt 0) {
+        foreach ($Interactable in $Interactables.Keys) {
+            $RoomOptions += $World."$($State.CurrentRoom)".Interactables.SodaMachine.MenuDescription
+        }
+    }
+    if ($RoomOptions.Count -gt 0) {
         Show-RoomOptions -RoomOptions $RoomOptions
     }
-    
+        
     # Read player action.
     $PlayerInput = Read-Host "What would you like to do?"
     

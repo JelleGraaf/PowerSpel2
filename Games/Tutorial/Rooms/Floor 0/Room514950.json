@@ -1,6 +1,6 @@
 {
     "RoomTitle": "Things to do in rooms",
-    "RoomDescription": "Every now and then, you will encounter something in the room you can interact with. This will give you more options to do in the room, represented by the numbered list (just like picking up items). There is XXX here. Try it out and see what you can do with it.",
+    "RoomDescription": "Every now and then, you will encounter something in the room you can interact with. This will give you more options to do in the room, represented by the numbered list (just like picking up items). There is a soda machine here. Try it out and see what you can do with it.",
     "Exits": {
         "East": {
             "ExitDirection": "East",
@@ -9,6 +9,12 @@
         "West": {
             "ExitDirection": "West",
             "LockedDoor": false
+        }
+    },
+    "Interactables": {
+        "SodaMachine": {
+            "ItemInRoomDescription": "A soda vending machine stands against the wall.",
+            "MenuDescription": "Take a soda from the vending machine."
         }
     }
 }
