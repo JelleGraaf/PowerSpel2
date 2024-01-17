@@ -1,6 +1,6 @@
 {
     "RoomTitle": "Achievements",
-    "RoomDescription": "In the game, you can complete achievements. Achievements count for bragging rights and add to your end score. Achievements appear in the top of the screen, as has happened when you entered this room. You also get notified when you complete an achievement. To view a list of all achievements that are still available to complete, input '0'.",
+    "RoomDescription": "In the game, you can complete achievements. Achievements count for bragging rights and can add to your end score. Achievements appear in the top of the screen, as has happened when you entered this room. You also get notified when you complete an achievement. To view a list of all achievements that are still available to complete, input '0'.",
     "Exits": {
         "South": {
             "ExitDirection": "South",
