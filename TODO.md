@@ -2,7 +2,7 @@
 
 - Add objects to interact with
 - Add tutorial content with object
-- Protect against inputting a number that doesn't exist in the menu
+- Add tutorial achievements
 - Add a manual on how to add a game
   - Requirements
   - Tips

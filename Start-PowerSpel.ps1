@@ -75,7 +75,7 @@ foreach ($Room in $Rooms) {
 }
 
 $State = @{
-    CurrentRoom  = $StartRoom
+    CurrentRoom  = 524950 #$StartRoom
     Inventory    = @() # Don't fill this with text longer than the respective header column, or it will mess up the visualization.
     Achievements = @() # Don't fill this with text longer than the respective header column, or it will mess up the visualization.
     RoomsVisited = @($StartRoom)
@@ -116,34 +116,39 @@ while ($GameState -ne "Quit") {
     Show-Room
     
     # Write extra room options to screen, if any.
-    $RoomOptions = @()
+    $RoomOptions = @{}
+    $i = 1
     if ($Items.Count -gt 0) {
         foreach ($Item in $Items.Keys) {
-            $RoomOptions += "Get $Item."
+            $RoomOptions.$i = "Get $Item."
+            $i++
         }
     }
     if ($Interactables.Count -gt 0) {
-        foreach ($Interactable in $Interactables.Keys) {
-            $RoomOptions += $World."$($State.CurrentRoom)".Interactables.SodaMachine.MenuDescription
+        foreach ($InteractableName in $Interactables.Keys) {
+            $RoomOptions.$i = $World."$($State.CurrentRoom)".Interactables.$InteractableName.MenuDescription
+            $i++
         }
     }
     if ($RoomOptions.Count -gt 0) {
         Show-RoomOptions -RoomOptions $RoomOptions
     }
-        
+
     # Read player action.
     $PlayerInput = Read-Host "What would you like to do?"
     
     $ActionMessage = $null
+    # Process valid moves.
     if (@("N", "E", "S", "W", "U", "D") -contains $PlayerInput) {
-        # Valid moves get processed here.
         New-Move -Direction $PlayerInput
     }
-    elseif (@(1..9) -contains $PlayerInput -and $RoomOptions.Count -gt 0) {
-        # Menu actions get processed here.
-        $Action = $RoomOptions[$PlayerInput - 1]
+    # Process menu actions.
+    elseif (@(1..9) -contains $PlayerInput -and $PlayerInput -le $RoomOptions.Count) {
+        # My first try to fill $Action is below. That didn't work, for some reason. Below that is something that does work.
+        # $Action = $RoomOptions.$PlayerInput
+        $Action = $RoomOptions[$RoomOptions.Keys[$PlayerInput-1]][0]
 
-        # Remove the item from the room and add it to inventory
+        # Remove the item from the room and add it to inventory.
         if ($Action -like "Get *") {
             $PickUpItem = $Action.Substring(4, $($Action.Length - 5))
             $ActionMessage = $World."$($State.CurrentRoom)".Items.$PickUpItem.PickUpMessage
@@ -151,19 +156,22 @@ while ($GameState -ne "Quit") {
             $State.Inventory += $PickUpItem
             $PickUpItem = $null
         }
+        # Process room item.
         else {
-            # Process room item
-            $ActionMessage = "Processed room item XXX"
+            $ActionMessage = "Processed room item XXX."
         }
     }
+
+    # Show achievement overview.
     elseif ($PlayerInput -eq 0) {
         Show-Achievements
     }
+    # Exit command.
     elseif ($PlayerInput -eq "quit") {
         $GameState = "quit"
     }
+    # Catch all for invalid input.
     else {
-        # Invalid input gets processed here.
         $ActionMessage = "Invalid input, try again."
     }
     

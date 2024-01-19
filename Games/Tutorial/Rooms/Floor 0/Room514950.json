@@ -15,6 +15,10 @@
         "SodaMachine": {
             "ItemInRoomDescription": "A soda vending machine stands against the wall.",
             "MenuDescription": "Take a soda from the vending machine."
+        },
+        "TestMachine": {
+            "ItemInRoomDescription": "A test stands here.",
+            "MenuDescription": "Run a test with the test machine."
         }
     }
 }
