@@ -8,26 +8,22 @@ function Show-RoomOptions {
     
     .PARAMETER RoomOptions
         A hashtable of all the extra options in the current room.
-
+    
     .EXAMPLE
-        ps> $Items = @{}
-        ps> foreach ($Item in $World."$($State.CurrentRoom)".Items.Keys) { $Items.$Item = $World."$($State.CurrentRoom)".Items.$Item }
-        ps> $RoomOptions = @()
+        ps> $RoomObjects = @{}
         ps> $i = 1
-        ps> foreach ($Item in $Items.Keys) { $RoomOptions.$i = "Get $Item."; $i++ }
-        
-        ps> Show-RoomOptions -RoomOptions $RoomOptions
+        ps> foreach ($Item in $World."$($State.CurrentRoom)".Items.Keys) { $RoomObjects.$i = $World."$($State.CurrentRoom)".Items.$Item; $i++ }
+
+        ps> Show-RoomOptions -RoomOptions $RoomObjects
     #>
 
     param(
         [parameter(mandatory = $true)]
-        [hashtable]$RoomOptions
+        [hashtable]$RoomObjects
     )
 
-    foreach ($RoomOption in $RoomOptions.Keys | Sort-Object) {
-        # Make the first letter of RoomOption uppercase, then make the rest lowercase.
-        $RoomOptionsFormatted = $RoomOptions.$RoomOption.Substring(0,1).ToUpper() + $RoomOptions.$RoomOption.Substring(1).ToLower()
-        Write-Host "$RoomOption`: $RoomOptionsFormatted" -ForegroundColor Gray
+    foreach ($RoomObject in $RoomObjects.Keys | Sort-Object) {
+        Write-Host "$RoomObject`: $($RoomObjects.$RoomObject.MenuDescription)" -ForegroundColor Gray
     }
 
     Write-Host

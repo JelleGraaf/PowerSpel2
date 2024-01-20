@@ -37,11 +37,8 @@ function Show-Room {
     Show-Exits
 
     # Write room items and interactables to screen.
-    foreach ($Item in $Items.Keys) {
-        Write-Host $Items.$Item.ItemDescription -ForegroundColor Cyan
-    }
-    foreach ($Interactable in $Interactables.Keys) {
-        Write-Host $Interactables.$Interactable.ItemInRoomDescription -ForegroundColor Cyan
+    foreach ($RoomObject in $RoomObjects.Keys | Sort-Object) {
+        Write-Host $RoomObjects.$RoomObject.ItemDescription -ForegroundColor Cyan
     }
     Write-Host
 }

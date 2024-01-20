@@ -56,7 +56,7 @@ function New-Move {
         }
     }
 
-    # Check to see if there is a locked door in the Direction.
+    # Check to see if there is a locked door in the Direction and if the player inventory contains the correct key.
     if ($World."$($State.CurrentRoom)".Exits.$DirectionFull.LockedDoor -eq "true" -and ($State.Inventory -notcontains $World."$($State.CurrentRoom)".Exits.$DirectionFull.Key)) {
             $Script:ActionMessage = "The door in that direction is locked and you lack the key to unlock it."
             return

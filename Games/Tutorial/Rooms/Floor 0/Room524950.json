@@ -19,9 +19,20 @@
     },
     "Items": {
         "A simple key": {
+            "ItemName": "A simple key",
             "ItemDescription": "A simple key lies on the floor.",
-            "PickUpMessage": "You pick up the key and put it in your pocket.",
-            "InventoryName": "A simple key"
+            "ActionMessage": "You pick up the key and put it in your pocket.",
+            "MenuDescription": "Get a simple key.",
+            "InventoryName": "A simple key",
+            "ObjectType": "Item"
+        },
+        "A TESTKEY": {
+            "ItemName": "A TESTKEY",
+            "ItemDescription": "A TESTKEY sticks out of the wall.",
+            "ActionMessage": "You pick up a TESTKEY.",
+            "MenuDescription": "Get a TESTKEY.",
+            "InventoryName": "A TESTKEY",
+            "ObjectType": "Item"
         }
     }
 }

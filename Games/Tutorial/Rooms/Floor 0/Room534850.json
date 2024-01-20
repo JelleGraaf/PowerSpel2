@@ -10,9 +10,12 @@
     },
     "Items": {
         "A key card": {
+            "ItemName": "A key card",
             "ItemDescription": "A key card lies on the table.",
-            "PickUpMessage": "You snatch the key card from the table and tuck it with you.",
-            "InventoryName": "A key card"
-        }
+            "ActionMessage": "You snatch the key card from the table and tuck it with you.",
+            "MenuDescription": "Get a key card.",
+            "InventoryName": "A key card",
+            "ObjectType": "Item"
+                }
     }
 }

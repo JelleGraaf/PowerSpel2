@@ -102,76 +102,58 @@ while ($GameState -ne "Quit") {
     # The number is the game exit room, after which the game ends.
     Clear-Host
     
-    # Take inventory of all the items and interactables in the current room.
-    $Items = @{}
+    # Take inventory of all the objects (items and interactables) in the current room.
+    $RoomObjects = @{}
+    $i = 1
     foreach ($Item in $World."$($State.CurrentRoom)".Items.Keys) {
-        $Items.$Item = $World."$($State.CurrentRoom)".Items.$Item
+        $RoomObjects.$i = $World."$($State.CurrentRoom)".Items.$Item
+        $i++
     }
-    $Interactables = @{}  
     foreach ($Interactable in $World."$($State.CurrentRoom)".Interactables.Keys) {
-        $Interactables.$Interactable = $World."$($State.CurrentRoom)".Interactables.$Interactable
+        $RoomObjects.$i = $World."$($State.CurrentRoom)".Interactables.$Interactable
+        $i++
     }
 
     # Write the room content to screen.
     Show-Room
     
     # Write extra room options to screen, if any.
-    $RoomOptions = @{}
-    $i = 1
-    if ($Items.Count -gt 0) {
-        foreach ($Item in $Items.Keys) {
-            $RoomOptions.$i = "Get $Item."
-            $i++
-        }
-    }
-    if ($Interactables.Count -gt 0) {
-        foreach ($InteractableName in $Interactables.Keys) {
-            $RoomOptions.$i = $World."$($State.CurrentRoom)".Interactables.$InteractableName.MenuDescription
-            $i++
-        }
-    }
-    if ($RoomOptions.Count -gt 0) {
-        Show-RoomOptions -RoomOptions $RoomOptions
-    }
+    Show-RoomOptions -RoomObjects $RoomObjects
 
     # Read player action.
     $PlayerInput = Read-Host "What would you like to do?"
     
     $ActionMessage = $null
-    # Process valid moves.
     if (@("N", "E", "S", "W", "U", "D") -contains $PlayerInput) {
+        # Process valid moves.
         New-Move -Direction $PlayerInput
     }
-    # Process menu actions.
-    elseif (@(1..9) -contains $PlayerInput -and $PlayerInput -le $RoomOptions.Count) {
-        # My first try to fill $Action is below. That didn't work, for some reason. Below that is something that does work.
-        # $Action = $RoomOptions.$PlayerInput
-        $Action = $RoomOptions[$RoomOptions.Keys[$PlayerInput-1]][0]
-
-        # Remove the item from the room and add it to inventory.
-        if ($Action -like "Get *") {
-            $PickUpItem = $Action.Substring(4, $($Action.Length - 5))
-            $ActionMessage = $World."$($State.CurrentRoom)".Items.$PickUpItem.PickUpMessage
-            $World."$($State.CurrentRoom)".Items.Remove("$PickUpItem")
-            $State.Inventory += $PickUpItem
+    elseif (@(1..9) -contains $PlayerInput -and $PlayerInput -le $RoomObjects.Count) {
+        # Process menu actions.
+        if (($RoomObjects.[int]$PlayerInput).ObjectType -eq "Item") {
+            # Remove the item from the room and add it to inventory.
+            $PickUpItem = $RoomObjects.[int]$PlayerInput
+            $ActionMessage = $PickUpItem.ActionMessage
+            $World."$($State.CurrentRoom)".Items.Remove($PickUpItem.ItemName)
+            $State.Inventory += $PickUpItem.InventoryName
             $PickUpItem = $null
         }
-        # Process room item.
         else {
+            # Process room item.
             $ActionMessage = "Processed room item XXX."
         }
     }
 
-    # Show achievement overview.
     elseif ($PlayerInput -eq 0) {
+        # Show achievement overview.
         Show-Achievements
     }
-    # Exit command.
     elseif ($PlayerInput -eq "quit") {
+        # Exit command.
         $GameState = "quit"
     }
-    # Catch all for invalid input.
     else {
+        # Catch all for invalid input.
         $ActionMessage = "Invalid input, try again."
     }
     
