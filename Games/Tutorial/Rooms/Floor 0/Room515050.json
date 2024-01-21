@@ -1,6 +1,6 @@
 {
     "RoomTitle": "The map",
-    "RoomDescription": "Congratulations! You just made your first move. As you can see in the green action message, you have walked east to a different room. You can keep track of where you are on the map above. See that yellow X? That is you. Move down now.",
+    "RoomDescription": "Congratulations! You just made your first move. As you can see in the green action message, you have walked east to a different room. You can keep track of where you are on the map above. See that yellow @? That is you. Move down now.",
     "Exits": {
         "West": {
             "ExitDirection": "West",
