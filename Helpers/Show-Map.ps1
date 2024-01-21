@@ -96,7 +96,7 @@ function Show-Map {
             elseif ($CurrentFloorRooms -contains ($x + 1).ToString() + $y.ToString() + $z.ToString()) {
                 Write-Host " |" -NoNewline
             }
-            # Write TODO for a non-existent room
+            # Write for a non-existent room
             else {
                 Write-Host " ·" -ForegroundColor DarkGray -NoNewline
             }

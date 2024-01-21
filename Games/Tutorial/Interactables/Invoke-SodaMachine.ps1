@@ -10,9 +10,6 @@ function Invoke-SodaMachine {
 
     # Import machine data from file.
     $InteractableData = Get-Content "$PSScriptRoot\SodaMachine.json" | ConvertFrom-Json -AsHashtable
-    <# DEV CODE
-    $InteractableData = Get-Content "C:\git\PowerSpel2\Games\Tutorial\Interactables\SodaMachine.json" | ConvertFrom-Json -AsHashtable
-    #>
     
     # Write header to screen.
     Show-Header

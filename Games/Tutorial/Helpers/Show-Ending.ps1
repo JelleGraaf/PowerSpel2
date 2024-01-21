@@ -45,19 +45,21 @@ function Show-Ending {
     # Achievements.
     Write-Host
     Write-Host "*** ACHIEVEMENTS ***"
-    Start-Sleep 1
+    Start-Sleep -Milliseconds 1000
     foreach ($Achievement in $State.Achievements) {
         Write-Host "You have completed the achievement '$Achievement'" -ForegroundColor Green
+        Start-Sleep -Milliseconds 100
     }
-
+    
     foreach ($UncompletedAchievement in $GameAchievements.Keys) {
-        Write-Host "You have not completed the achievement '$UncompletedAchievement'. Maybe next time" -ForegroundColor Red
+        Write-Host "You have not completed the achievement '$UncompletedAchievement'." -ForegroundColor Red
+        Start-Sleep -Milliseconds 100
     }
-    Start-Sleep 1
+    Start-Sleep -Milliseconds 1000
 
 
     Write-Host
     Write-Host "Thank you for playing PowerSpel!" -ForegroundColor Yellow
     Write-Host
-    Start-Sleep 2
+    Start-Sleep -Milliseconds 2000
 }
