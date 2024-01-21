@@ -5,7 +5,7 @@ function Invoke-AchievementCheck {
     #>
 
     # Check for completed achievements.
-    ## Completer of achievements
+    ## Completer of achievements.
     if ($State.CurrentRoom -eq 535050) {
         $AchievementName = "Completer of achievements"
         if ($GameAchievements.Keys -contains $AchievementName) {
@@ -13,7 +13,7 @@ function Invoke-AchievementCheck {
         }
     }
 
-    ## Keymaster
+    ## Keymaster.
     if ($State.Inventory -contains 'A simple key' -and $State.Inventory -contains 'A key card' -and $State.CurrentRoom -eq 524850) {
         $AchievementName = "Keymaster"
         if ($GameAchievements.Keys -contains $AchievementName) {
@@ -29,7 +29,7 @@ function Invoke-AchievementCheck {
         }
     }
 
-    ## Tutorial master
+    ## Tutorial master.
     if ($State.CurrentRoom -eq 504950) {
         $AchievementName = "Tutorial master"
         if ($GameAchievements.Keys -contains $AchievementName) {

@@ -12,6 +12,7 @@ function Show-MapStatic {
 
     .NOTES
         Due to the limited screen space, the map shouldn't be larger than 11 rooms high and 20 rooms wide.
+        Look at the $MapXXXBoundary parameters for the highest and lowest coordinate numbers possible.
 
         This part is the most ugly code you'll find in the game. I'm not proud of it, but I will hide behind
         the reasoning "If it looks stupid but it works, it ain't stupid". Maybe, some day, I will rewrite this
@@ -31,21 +32,21 @@ function Show-MapStatic {
         218: ┌
     #>
 
-    $MapLeftBoundary = 40   # The lowest x-axis number to display on the map
-    $MapRightBoundary = 60  # The highest x-axis number to display on the map
-    $MapBottomBoundary = 45 # The lowest y-axis number to display on the map
-    $MapTopBoundary = 55    # The highest y-axis number to display on the map
+    $MapLeftBoundary = 40   # The lowest x-axis number to display on the map.
+    $MapRightBoundary = 60  # The highest x-axis number to display on the map.
+    $MapBottomBoundary = 45 # The lowest y-axis number to display on the map.
+    $MapTopBoundary = 55    # The highest y-axis number to display on the map.
     [string]$z = $($State.CurrentRoom).ToString().substring(4)
     [array]$CurrentFloorRooms = ($World.Keys | Where-Object { $_ -like "*$z" }) | Sort-Object
 
-    # Sort the rooms by y-axis (to make entire rows)
+    # Sort the rooms by y-axis (to make entire rows).
     $CurrentFloorRoomsRows = $CurrentFloorRooms | Group-Object { [int]$_.Substring(2, 2) }
     
-    # Sort the rooms by x-axis (to make entire columns)
+    # Sort the rooms by x-axis (to make entire columns).
     $CurrentFloorRoomsColumns = $CurrentFloorRooms | Group-Object { [int]$_.Substring(0, 2) }
     
-    # Check to see if the map falls outside the displayable range
-    # Determine the border coordinates of the map
+    # Check to see if the map falls outside the displayable range.
+    # Determine the border coordinates of the map.
     $LowestRowNumber = [convert]::ToInt32($CurrentFloorRoomsRows.Name[0])
     $HighestRowNumber = [convert]::ToInt32($CurrentFloorRoomsRows.Name[-1])
     $LowestColumnNumber = [convert]::ToInt32($CurrentFloorRoomsColumns.Name[0])
@@ -99,21 +100,21 @@ function Show-MapStatic {
             elseif ($CurrentFloorRooms -contains ($x + 1).ToString() + $y.ToString() + $z.ToString()) {
                 Write-Host " |" -NoNewline
             }
-            # Write for a non-existent room
+            # Write for a non-existent room.
             else {
                 Write-Host " ·" -ForegroundColor DarkGray -NoNewline
             }
         }
         Write-Host
 
-        # Loop through the x-axis a second time, for the line with walls and corner pieces
+        # Loop through the x-axis a second time, for the line with walls and corner pieces.
         for ($x = $MapLeftBoundary; $x -le $MapRightBoundary; $x++) {
             $CurrentMapRoom = $x.ToString() + $y.ToString() + $z.ToString()
             $RoomToTheEast = ($x + 1).ToString() + $y.ToString() + $z.ToString()
             $RoomToTheSouth = $x.ToString() + ($y - 1).ToString() + $z.ToString()
             $RoomToTheSouthEast = ($x + 1).ToString() + ($y - 1).ToString() + $z.ToString()
 
-            ## DRAW WALL PIECES
+            ## DRAW WALL PIECES.
             # Trigger if the current position contains a room.
             if ($CurrentFloorRooms -contains $CurrentMapRoom) {
                 # Trigger if there is a room to the south.
@@ -142,7 +143,7 @@ function Show-MapStatic {
                 }
             }
 
-            ## DRAW CORNER PIECES
+            ## DRAW CORNER PIECES.
             # Room to the east, not to the south or southeast.
             if ($CurrentFloorRooms -contains $RoomToTheEast -and $CurrentFloorRooms -notcontains $RoomToTheSouth -and $CurrentFloorRooms -notcontains $RoomToTheSouthEast) {
                 if ($CurrentFloorRooms -contains $CurrentMapRoom) { Write-Host "┴" -NoNewline }

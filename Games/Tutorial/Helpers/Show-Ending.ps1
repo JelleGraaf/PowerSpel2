@@ -33,7 +33,7 @@ function Show-Ending {
     Write-Host
     Start-Sleep 1              
 
-    # Time played
+    # Time played.
     Write-Host "You have played for a total of " -NoNewline
     Write-Host ((Get-Date) - $StartTime).Minutes -ForegroundColor Green -NoNewline
     Write-Host " minutes."
@@ -55,9 +55,10 @@ function Show-Ending {
         Write-Host "You have not completed the achievement '$UncompletedAchievement'." -ForegroundColor Red
         Start-Sleep -Milliseconds 100
     }
+    
     Start-Sleep -Milliseconds 1000
 
-
+    # Final words.
     Write-Host
     Write-Host "Thank you for playing PowerSpel!" -ForegroundColor Yellow
     Write-Host

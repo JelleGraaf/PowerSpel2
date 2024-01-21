@@ -42,7 +42,7 @@ function Invoke-SodaMachine {
         $i++
     }
 
-    # Write interactable specific actions to screen
+    # Write interactable specific actions to screen.
     $i = 1
     Write-WordWrapHost "You stand in front of a soda vending machine. There's a lot of choice and it is free of charge. Take your pick!" -Color Magenta
     Write-Host
@@ -56,7 +56,7 @@ function Invoke-SodaMachine {
     # Read player action.
     $PlayerInput = Read-Host "What soda would you like? Enter 0 to leave."
 
-    # Process player action
+    # Process player action.
     if ((@(1..9) -contains $PlayerInput -and $PlayerInput -le $Sodas.Count)) {
         # Add the chosen soda to inventory, if there isn't a drink in the inventory already.
         if ($State.Drink -eq $true) {

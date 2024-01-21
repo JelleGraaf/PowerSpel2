@@ -15,6 +15,7 @@
     .PARAMETER ScoreMaxValue
         The highest possible number that the score could have reached.
     #>
+    
     Param(
         $ScoreName,
         $ScoreValue,

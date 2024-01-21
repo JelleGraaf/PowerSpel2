@@ -3,16 +3,16 @@
     Starts a game of PowerSpel.
 
 .DESCRIPTION
-    Starts a game of PowerSpel. Walk through a world in this text-based adventure, styled after the Multi-User Dungeons that were popular in the 1990s.
+    Starts a game of PowerSpel. Walk through a world in this text-based adventure, styled after the Multi-User Dungeons that were popular in the nineties.
 
 .PARAMETER Game
     Choose the game mode here. Valid options: Tutorial, Pentest. Defaults to Pentest, the original PowerSpel.
 
 .PARAMETER Map
     Choose the map type, or turn it off. Valid options: 
-    - Static (puts the current floor on the map view and lets the player marker walk around in that)
-    - Dynamic (puts the player marker in the middle of the map view and draws the map around it)
-    - Off (turns off the map entirely)
+    - Static (puts the current floor on the map view and lets the player marker walk around in that).
+    - Dynamic (puts the player marker in the middle of the map view and draws the map around it).
+    - Off (turns off the map entirely).
 
 .EXAMPLE
     ps> Start-PowerSpel.ps1 -Game Tutorial
@@ -179,6 +179,8 @@ while ($GameState -ne "Quit") {
     
     Invoke-AchievementCheck
 }
+#endregion main game.
+
 
 #########################################
 #region ENDING                          #
@@ -186,4 +188,4 @@ while ($GameState -ne "Quit") {
 
 Show-Ending
 
-#endregion endgame
+#endregion ending.
