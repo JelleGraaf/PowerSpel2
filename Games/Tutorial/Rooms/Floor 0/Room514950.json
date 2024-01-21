@@ -18,13 +18,6 @@
             "MenuDescription": "Take a soda from the vending machine.",
             "ActionMessage": "You walk towards the soda vending machine.",
             "ObjectType": "Interactable"
-        },
-        "TestMachine": {
-            "InteractableName": "TestMachine",
-            "ItemDescription": "A test stands here.",
-            "MenuDescription": "Run a test with the test machine.",
-            "ActionMessage": "You walk towards the test machine.",
-            "ObjectType": "Interactable"
         }
     }
 }

@@ -75,7 +75,7 @@ foreach ($Room in $Rooms) {
 }
 
 $State = @{
-    CurrentRoom  = 514950 #$StartRoom
+    CurrentRoom  = $StartRoom
     Inventory    = @() # Don't fill this with text longer than the respective header column, or it will mess up the visualization.
     Achievements = @() # Don't fill this with text longer than the respective header column, or it will mess up the visualization.
     RoomsVisited = @($StartRoom)

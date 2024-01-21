@@ -25,14 +25,6 @@
             "MenuDescription": "Get a simple key.",
             "InventoryName": "A simple key",
             "ObjectType": "Item"
-        },
-        "A TESTKEY": {
-            "ItemName": "A TESTKEY",
-            "ItemDescription": "A TESTKEY sticks out of the wall.",
-            "ActionMessage": "You pick up a TESTKEY.",
-            "MenuDescription": "Get a TESTKEY.",
-            "InventoryName": "A TESTKEY",
-            "ObjectType": "Item"
         }
     }
 }
