@@ -8,6 +8,7 @@ function Show-Ending {
     #>
 
     Clear-Host
+    Write-Host
     Write-Host "              ▄███████▄  ▄██████▄   ▄█     █▄     ▄████████    ▄████████    ▄████████    ▄███████▄    ▄████████  ▄█       " -ForegroundColor Red
     Write-Host "             ███    ███ ███    ███ ███     ███   ███    ███   ███    ███   ███    ███   ███    ███   ███    ███ ███       " -ForegroundColor Red
     Write-Host "             ███    ███ ███    ███ ███     ███   ███    █▀    ███    ███   ███    █▀    ███    ███   ███    █▀  ███       " -ForegroundColor Red
@@ -50,7 +51,7 @@ function Show-Ending {
     }
 
     foreach ($UncompletedAchievement in $GameAchievements.Keys) {
-        Write-Host "You have not completed the achievement '$Achievement'. Maybe next time" -ForegroundColor Red
+        Write-Host "You have not completed the achievement '$UncompletedAchievement'. Maybe next time" -ForegroundColor Red
     }
     Start-Sleep 1
 
