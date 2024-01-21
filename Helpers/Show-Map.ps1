@@ -12,6 +12,7 @@ function Show-Map {
         'Static'  { Show-MapStatic }
         'Dynamic' { Show-MapDynamic }
         'Compact' { Show-MapCompact } # Future map type
+        'Off' { } # Do nothing here, the map is off
         Default { Write-Error "Map style not recognized" }
     }
         

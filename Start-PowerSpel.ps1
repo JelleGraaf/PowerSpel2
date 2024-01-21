@@ -18,7 +18,10 @@
 
 param (
     [ValidateSet("Tutorial", "Pentest")]
-    [string]$Game = "Pentest"
+    [string]$Game = "Pentest",
+
+    [ValidateSet("Static", "Dynamic", "Off")]
+    [string]$Map
 )
 
 #########################################
@@ -34,7 +37,7 @@ foreach ($GeneralHelper in $GeneralHelpers) {
     . $GeneralHelper.fullname
 }
 
-# Import game helper functions
+# Import game helper functions.
 <# LOCAL DEV
 $GameHelpers = Get-ChildItem -Path .\Games\tutorial\Helpers -File
 #>
@@ -43,7 +46,7 @@ foreach ($GameHelper in $GameHelpers) {
     . $GameHelper.fullname -force
 }
 
-# Import game interactables functions
+# Import game interactables functions.
 <# LOCAL DEV
 $Interactables = Get-ChildItem -Path .\Games\tutorial\Interactables -File -Filter "*.ps1"
 #>
@@ -52,18 +55,23 @@ foreach ($Interactable in $Interactables) {
     . $Interactable.fullname
 }
 
-# Load global setting for the loaded game
+# Load global setting for the loaded game.
 Initialize-Game
 
-# Force console colors
+# Overwrite map style with parameter value (if any).
+if ($Map) { 
+    $MapStyle = $Map
+}
+
+# Force console colors.
 $Console = $Host.UI.RawUI
 $Console.ForegroundColor = "White"
 $Console.BackgroundColor = "Black"
 
-# Import rooms
+# Import rooms.
 $Rooms = Get-ChildItem -Path "$PSScriptRoot\Games\$Game\Rooms\" -File -Recurse | Where-Object { $_.Name -ne "_RoomTemplate.json" }
 
-# Prepare variables
+# Prepare variables.
 <# LOCAL DEV
 $Game = "Tutorial"
 $Rooms = Get-ChildItem -Path "C:\git\PowerSpel2\Games\$Game\Rooms\" -File -Recurse | Where-Object {$_.Name -ne "_RoomTemplate.json"}
@@ -97,7 +105,7 @@ $StartTime = Get-Date
 # Start the game with a splash screen.
 Show-StartScreen
 
-# Main game loop
+# Main game loop.
 while ($GameState -ne "Quit") {
     # Take inventory of all the objects (items and interactables) in the current room.
     $RoomObjects = @{}
@@ -145,7 +153,7 @@ while ($GameState -ne "Quit") {
             }
         }
         else {
-            # Fallback to something unexpected
+            # Fallback to something unexpected.
             Write-Error "Unexpected option chosen. Aborting."
         }
     }
