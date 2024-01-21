@@ -6,7 +6,6 @@ function Show-Room {
 
     # Write header to screen.
     Show-Header
-    Write-Host
 
     # Write map to screen, if enabled.
     if ($MapOn -eq $true) {

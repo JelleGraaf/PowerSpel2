@@ -1,15 +1,33 @@
 {
     "Cola": {
-        "MachineChoice": "Cola",
-        "FullName": "A can of cola",
+        "SodaName": "Cola",
+        "MenuDescription": "Cola",
         "ActionMessage": "You press the button for cola and a can drops from the machine. You take it with you.",
-        "StateDescription": "A drink"
+        "InventoryName": "A can of cola"
     },
-    "Cola zero": {
-        "MachineChoice": "Cola zero",
-        "FullName": "A can of cola zero",
+    "ColaZero": {
+        "SodaName": "ColaZero",
+        "MenuDescription": "Cola zero",
         "ActionMessage": "You press the button for cola zero and a can drops from the machine. You take it with you.",
-        "StateDescription": "A drink"
+        "InventoryName": "A can of cola zero"
+    },
+    "Fanta": {
+        "SodaName": "Fanta",
+        "MenuDescription": "Fanta",
+        "ActionMessage": "You press the button for fanta and a can drops from the machine. You take it with you.",
+        "InventoryName": "A can of fanta"
+    },
+    "Sprite": {
+        "SodaName": "Sprite",
+        "MenuDescription": "Sprite",
+        "ActionMessage": "You press the button for sprite and a can drops from the machine. You take it with you.",
+        "InventoryName": "A can of sprite"
+    },
+    "Cassis": {
+        "SodaName": "Cassis",
+        "MenuDescription": "Cassis",
+        "ActionMessage": "You press the button for cassis and a can drops from the machine. You take it with you.",
+        "InventoryName": "A can of cassis"
     }
 
 }

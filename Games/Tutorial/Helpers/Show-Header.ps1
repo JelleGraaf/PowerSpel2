@@ -7,6 +7,8 @@ function Show-Header {
         Writes a formatted table with relevant game data to screen. It takes data from the $State object and places is in an aligned table.
     #>
 
+    Clear-Host
+    
     # Top
     Write-Host "**********************************************************************************************************************************"
     Write-Host "* Inventory                                                     * Achievements                                                   *"
@@ -77,4 +79,5 @@ function Show-Header {
 
     # Bottom
     Write-Host "**********************************************************************************************************************************"
+    Write-Host
 }

@@ -75,7 +75,7 @@ foreach ($Room in $Rooms) {
 }
 
 $State = @{
-    CurrentRoom  = 524950 #$StartRoom
+    CurrentRoom  = 514950 #$StartRoom
     Inventory    = @() # Don't fill this with text longer than the respective header column, or it will mess up the visualization.
     Achievements = @() # Don't fill this with text longer than the respective header column, or it will mess up the visualization.
     RoomsVisited = @($StartRoom)
@@ -99,9 +99,6 @@ Show-StartScreen
 
 # Main game loop
 while ($GameState -ne "Quit") {
-    # The number is the game exit room, after which the game ends.
-    Clear-Host
-    
     # Take inventory of all the objects (items and interactables) in the current room.
     $RoomObjects = @{}
     $i = 1
@@ -123,6 +120,7 @@ while ($GameState -ne "Quit") {
     # Read player action.
     $PlayerInput = Read-Host "What would you like to do?"
     
+    # Process player action.
     $ActionMessage = $null
     if (@("N", "E", "S", "W", "U", "D") -contains $PlayerInput) {
         # Process valid moves.
@@ -130,17 +128,25 @@ while ($GameState -ne "Quit") {
     }
     elseif (@(1..9) -contains $PlayerInput -and $PlayerInput -le $RoomObjects.Count) {
         # Process menu actions.
-        if (($RoomObjects.[int]$PlayerInput).ObjectType -eq "Item") {
+        $ChosenObject = $RoomObjects.[int]$PlayerInput
+        if ($ChosenObject.ObjectType -eq "Item") {
             # Remove the item from the room and add it to inventory.
-            $PickUpItem = $RoomObjects.[int]$PlayerInput
-            $ActionMessage = $PickUpItem.ActionMessage
-            $World."$($State.CurrentRoom)".Items.Remove($PickUpItem.ItemName)
-            $State.Inventory += $PickUpItem.InventoryName
-            $PickUpItem = $null
+            $ActionMessage = $ChosenObject.ActionMessage
+            $World."$($State.CurrentRoom)".Items.Remove($ChosenObject.ItemName)
+            $State.Inventory += $ChosenObject.InventoryName
+            $ChosenObject = $null
+        }
+        elseif ($ChosenObject.ObjectType -eq "Interactable") {
+            # Process room item.
+            $ActionMessage = $ChosenObject.ActionMessage
+            $MachineState = "Running"
+            while ($MachineState -eq "Running") {
+                & "Invoke-$($ChosenObject.InteractableName)"
+            }
         }
         else {
-            # Process room item.
-            $ActionMessage = "Processed room item XXX."
+            # Fallback to something unexpected
+            Write-Error "Unexpected option chosen. Aborting."
         }
     }
 
