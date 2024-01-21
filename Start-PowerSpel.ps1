@@ -40,7 +40,7 @@ $GameHelpers = Get-ChildItem -Path .\Games\tutorial\Helpers -File
 #>
 $GameHelpers = Get-ChildItem -Path $PSScriptRoot\Games\$Game\Helpers -File
 foreach ($GameHelper in $GameHelpers) {
-    . $GameHelper.fullname
+    . $GameHelper.fullname -force
 }
 
 # Import game interactables functions
