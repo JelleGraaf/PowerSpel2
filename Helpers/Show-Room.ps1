@@ -8,7 +8,7 @@ function Show-Room {
     Show-Header
 
     # Write map to screen, if enabled.
-    if ($MapOn -eq $true) {
+    if ($MapStyle -ne "Off") {
         Show-Map
     }
     
