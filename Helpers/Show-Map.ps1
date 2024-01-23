@@ -11,7 +11,7 @@ function Show-Map {
     switch ($MapStyle) {
         'Static'  { Show-MapStatic }
         'Dynamic' { Show-MapDynamic }
-        'Compact' { Show-MapCompact } # Future map type.
+        'Compact' { Show-MapCompact }
         'Off'     { } # Do nothing here, the map is off.
         Default   { Write-Error "Map style not recognized" }
     }

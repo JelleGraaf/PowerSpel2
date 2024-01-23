@@ -26,7 +26,7 @@ param (
     [ValidateSet("Tutorial", "Pentest")]
     [string]$Game = "Pentest",
 
-    [ValidateSet("Static", "Dynamic", "Off")]
+    [ValidateSet("Static", "Dynamic", "Compact", "Off")]
     [string]$Map
 )
 
