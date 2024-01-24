@@ -15,8 +15,8 @@ function Invoke-SodaMachine {
     Show-Header
 
     # Write map to screen, if enabled.
-    if ($MapOn -eq $true) {
-        Show-Map
+    if ($MapStyle) {
+        Show-Map -MapStyle $MapStyle
     }
     
     # Write previous action to screen, if any.

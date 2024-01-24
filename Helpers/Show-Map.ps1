@@ -8,10 +8,13 @@ function Show-Map {
         displays the map on screen, with the chosen map type.
     #>
 
+    param(
+        $MapStyle
+    )
+
     switch ($MapStyle) {
-        'Static'  { Show-MapStatic }
         'Dynamic' { Show-MapDynamic }
-        'Compact' { Show-MapCompact }
+        'Static'  { Show-MapStatic }
         'Off'     { } # Do nothing here, the map is off.
         Default   { Write-Error "Map style not recognized" }
     }

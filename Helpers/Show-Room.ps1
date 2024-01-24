@@ -9,7 +9,7 @@ function Show-Room {
 
     # Write map to screen, if enabled.
     if ($MapStyle -ne "Off") {
-        Show-Map
+        Show-Map -MapStyle $MapStyle
     }
     
     # Write previous action to screen, if any.
