@@ -8,3 +8,4 @@
   - Add achievements
   - Create all interactables
   - Add endings
+- Rewrite Show-Header, to allow for resizing in Initialize-Game and deduplicate the code there.
