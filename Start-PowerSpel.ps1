@@ -172,6 +172,11 @@ while ($GameState -ne "Quit") {
         # Exit command.
         $GameState = "quit"
     }
+    elseif ($PlayerInput -eq "idclip") {
+        # Cheat code 
+        $State.idclip = $true
+        $ActionMessage = "Clipping through doors enabled."
+    }
     else {
         # Catch all for invalid input.
         $ActionMessage = "Invalid input, try again."

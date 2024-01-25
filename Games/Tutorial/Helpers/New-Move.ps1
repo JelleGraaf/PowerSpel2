@@ -61,8 +61,19 @@ function New-Move {
 
     # Check to see if there is a locked door in the Direction and if the player inventory contains the correct key.
     if ($World."$($State.CurrentRoom)".Exits.$DirectionFull.LockedDoor -eq "true" -and ($State.Inventory -notcontains $World."$($State.CurrentRoom)".Exits.$DirectionFull.Key)) {
+        if ($State.idclip -eq $true) {
+            $Script:ActionMessage = "You use your cheat to clip through the door."
+            # Change currentroom to the new room
+            $State.CurrentRoom = $DestinationRoom
+            # Add the new room to the State, for statistics.
+            if ($State.RoomsVisited -notcontains $DestinationRoom) {
+                $State.RoomsVisited += $DestinationRoom
+            }
+        }
+        else {
             $Script:ActionMessage = "The door in that direction is locked and you lack the key to unlock it."
-            return
+        }
+        return
     }
 
     # Check to see if there is a room with the correct coordinates in the map, and an exit in the room info which corresponds with the Direction.
