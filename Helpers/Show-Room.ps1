@@ -26,7 +26,7 @@ function Show-Room {
     }
 
     # Write room title to screen.
-    Write-Host "[$($World."$($State.CurrentRoom)".RoomTitle)]" -BackgroundColor White -ForegroundColor Black
+    Write-Host " [$($World."$($State.CurrentRoom)".RoomTitle)] " -BackgroundColor White -ForegroundColor Black
     Write-Host
     
     # Write room description to screen.
