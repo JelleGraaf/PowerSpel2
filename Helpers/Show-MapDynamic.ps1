@@ -61,7 +61,7 @@ function Show-MapDynamic {
                 if ($State.CurrentRoom -eq $CurrentMapRoom) {
                     Write-Host "@" -ForegroundColor Yellow -NoNewline
                 }
-                # Write X when there is an exit up and down.
+                # Write ♢ when there is an exit up and down.
                 elseif ($World."$CurrentMapRoom".Exits.Keys -contains "Up" -and $World."$CurrentMapRoom".Exits.Keys -contains "Down") {
                     Write-Host "♢" -ForegroundColor DarkGray -NoNewline
                 }
