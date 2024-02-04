@@ -3,7 +3,6 @@
     "RoomDescription": "Well done. You have reached the second locked room. Now you know your way around locked doors and keys.",
     "Exits": {
         "North": {
-            "ExitDirection": "North",
             "LockedDoor": true,
             "Key": "A key card"
         }

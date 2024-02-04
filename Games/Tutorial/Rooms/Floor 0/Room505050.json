@@ -3,7 +3,6 @@
     "RoomDescription": "Welcome to the tutorial game for PowerSpel. It is a text-based game, in the style of a Multi-User Dungeon (MUD). In that fashion, you move around in the cardinal directions and up and down. To move, enter the first letter of the direction you want to go. Give it a try: enter 'e' (without the quotes) to move to the east.",
     "Exits": {
         "East": {
-            "ExitDirection": "East",
             "LockedDoor": false
         }
     }

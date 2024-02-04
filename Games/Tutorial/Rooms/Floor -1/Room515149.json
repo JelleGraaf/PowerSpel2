@@ -3,11 +3,9 @@
     "RoomDescription": "That's it! Keep moving, now to the east.",
     "Exits": {
         "East": {
-            "ExitDirection": "East",
             "LockedDoor": false
         },
         "South": {
-            "ExitDirection": "South",
             "LockedDoor": false
         }
     }

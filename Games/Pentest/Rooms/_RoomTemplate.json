@@ -3,32 +3,26 @@
     "RoomDescription": "A longer description of what is inside the room.",
     "Exits": {
         "North": {
-            "ExitDirection": "North",
             "ExitMessage": "(optional) A message for walking north that differs from the default message.",
             "LockedDoor": false
         },
         "East": {
-            "ExitDirection": "East",
             "ExitMessage": "(optional) A message for walking east that differs from the default message.",
             "LockedDoor": false
         },
         "South": {
-            "ExitDirection": "South",
             "ExitMessage": "(optional) A message for walking south that differs from the default message.",
             "LockedDoor": false
         },
         "West": {
-            "ExitDirection": "West",
             "ExitMessage": "(optional) A message for walking west that differs from the default message.",
             "LockedDoor": false
         },
         "Up": {
-            "ExitDirection": "Up",
             "ExitMessage": "(optional) A message for walking up that differs from the default message.",
             "LockedDoor": false
         },
         "Down": {
-            "ExitDirection": "Down",
             "ExitMessage": "(optional) A message for walking down that differs from the default message.",
             "LockedDoor": true,
             "Key": "A simple key"

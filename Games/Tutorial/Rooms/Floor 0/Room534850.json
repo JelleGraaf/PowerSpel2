@@ -3,7 +3,6 @@
     "RoomDescription": "Great! You unlocked the room with the key. There is another key in this room. Pick it up and see if it fits on the second locked door.",
     "Exits": {
         "North": {
-            "ExitDirection": "North",
             "LockedDoor": true,
             "Key": "A simple key"
         }

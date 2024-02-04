@@ -3,11 +3,9 @@
     "RoomDescription": "You enter the cellar. You can see that the map only shows your current floor. Find your way back to the main floor by walking in the right directions.",
     "Exits": {
         "North": {
-            "ExitDirection": "North",
             "LockedDoor": false
         },
         "Up": {
-            "ExitDirection": "Up",
             "LockedDoor": false
         }
     }

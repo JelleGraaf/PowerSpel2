@@ -3,11 +3,9 @@
     "RoomDescription": "Almost there...",
     "Exits": {
         "South": {
-            "ExitDirection": "South",
             "LockedDoor": false
         },
         "West": {
-            "ExitDirection": "West",
             "LockedDoor": false
         }
     }
