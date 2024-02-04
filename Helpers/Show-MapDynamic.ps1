@@ -26,6 +26,8 @@ function Show-MapDynamic {
         197: ┼
         217: ┘
         218: ┌
+
+        The arrows are copied from https://www.calculators.org/math/html-arrows.php.
     #>
 
     $CurrentX = [int]$($State.CurrentRoom).ToString().substring(0,2)
@@ -63,15 +65,16 @@ function Show-MapDynamic {
                 }
                 # Write ♢ when there is an exit up and down.
                 elseif ($World."$CurrentMapRoom".Exits.Keys -contains "Up" -and $World."$CurrentMapRoom".Exits.Keys -contains "Down") {
-                    Write-Host "♢" -ForegroundColor DarkGray -NoNewline
+                    #Write-Host "◇" -ForegroundColor DarkGray -NoNewline
+                    Write-Host "↕" -ForegroundColor DarkGray -NoNewline
                 }
                 # Write ^ when there is an exit up.
                 elseif ($World."$CurrentMapRoom".Exits.Keys -contains "Up") {
-                    Write-Host "^" -ForegroundColor DarkGray -NoNewline
+                    Write-Host "↑" -ForegroundColor DarkGray -NoNewline
                 }
                 # Write X when there is an exit down.
                 elseif ($World."$CurrentMapRoom".Exits.Keys -contains "Down") {
-                    Write-Host "v" -ForegroundColor DarkGray -NoNewline
+                    Write-Host "↓" -ForegroundColor DarkGray -NoNewline
                 }
                 # Write a space for an empty room.
                 else {

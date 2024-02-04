@@ -68,15 +68,15 @@ function Show-MapStatic {
                 }
                 # Write ♢ when there is an exit up and down.
                 elseif ($World."$CurrentMapRoom".Exits.Keys -contains "Up" -and $World."$CurrentMapRoom".Exits.Keys -contains "Down") {
-                    Write-Host "♢" -ForegroundColor DarkGray -NoNewline
+                    Write-Host "↕" -ForegroundColor DarkGray -NoNewline
                 }
                 # Write ^ when there is an exit up.
                 elseif ($World."$CurrentMapRoom".Exits.Keys -contains "Up") {
-                    Write-Host "^" -ForegroundColor DarkGray -NoNewline
+                    Write-Host "↑" -ForegroundColor DarkGray -NoNewline
                 }
-                # Write v when there is an exit down.
+                # Write X when there is an exit down.
                 elseif ($World."$CurrentMapRoom".Exits.Keys -contains "Down") {
-                    Write-Host "v" -ForegroundColor DarkGray -NoNewline
+                    Write-Host "↓" -ForegroundColor DarkGray -NoNewline
                 }
                 # Write a space for an empty room.
                 else {
