@@ -185,4 +185,5 @@ function Show-MapDynamic {
         }
         Write-Host
     }
+    Write-Host
 }

@@ -57,7 +57,10 @@ function New-Move {
     }
 
     # Check to see if there is a locked door in the Direction and if the player inventory contains the correct key.
-    if ($World."$($State.CurrentRoom)".Exits.$DirectionFull.LockedDoor -eq "true" -and ($State.Inventory -notcontains $World."$($State.CurrentRoom)".Exits.$DirectionFull.Key)) {
+#TODO DOORTESTEN
+    $LockedDoor = $World."$($State.CurrentRoom)".Exits.$DirectionFull.LockedDoor
+    $InventoryKeysThatFitThisLock = $State.Inventory | Where-Object { $World."$($State.CurrentRoom)".Exits.$DirectionFull.Key -contains $_}
+    if ( $LockedDoor -eq "true" -and ($InventoryKeysThatFitThisLock).Count -eq 0) {
         if ($State.idclip -eq $true) {
             $Script:ActionMessage = "You use your cheat to clip through the door."
             # Change currentroom to the new room

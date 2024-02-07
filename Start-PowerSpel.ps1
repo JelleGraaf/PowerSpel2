@@ -45,7 +45,7 @@ foreach ($GeneralHelper in $GeneralHelpers) {
 
 # Import game helper functions.
 <# LOCAL DEV
-$GameHelpers = Get-ChildItem -Path .\Games\tutorial\Helpers -File
+$GameHelpers = Get-ChildItem -Path .\Games\$Game\Helpers -File
 #>
 $GameHelpers = Get-ChildItem -Path $PSScriptRoot\Games\$Game\Helpers -File
 foreach ($GameHelper in $GameHelpers) {
@@ -54,14 +54,14 @@ foreach ($GameHelper in $GameHelpers) {
 
 # Import game interactables functions.
 <# LOCAL DEV
-$Interactables = Get-ChildItem -Path .\Games\tutorial\Interactables -File -Filter "*.ps1"
+$Interactables = Get-ChildItem -Path .\Games\$Game\Interactables -File -Filter "*.ps1"
 #>
 $Interactables = Get-ChildItem -Path $PSScriptRoot\Games\$Game\Interactables -File -Filter "*.ps1"
 foreach ($Interactable in $Interactables) {
     . $Interactable.fullname
 }
 
-# Load global setting for the loaded game.
+# Load global setting for the chosen game.
 Initialize-Game
 
 # Overwrite map style with parameter value (if any).
@@ -79,7 +79,6 @@ $Rooms = Get-ChildItem -Path "$PSScriptRoot\Games\$Game\Rooms\" -File -Recurse |
 
 # Prepare variables.
 <# LOCAL DEV
-$Game = "Tutorial"
 $Rooms = Get-ChildItem -Path "C:\git\PowerSpel2\Games\$Game\Rooms\" -File -Recurse | Where-Object {$_.Name -ne "_RoomTemplate.json"}
 #>
 $World = @{}
