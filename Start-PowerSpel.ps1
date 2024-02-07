@@ -96,8 +96,10 @@ $State = @{
 }
 <# LOCAL DEV
 $GameAchievements = Get-Content ".\Games\$Game\Data\GameAchievements.json" | ConvertFrom-Json -AsHashtable
+$GameExploits = Get-Content ".\Games\$Game\Data\GameExploits.json" | ConvertFrom-Json -AsHashtable
 #>
 $GameAchievements = Get-Content "$PSScriptRoot\Games\$Game\Data\GameAchievements.json" | ConvertFrom-Json -AsHashtable
+$GameExploits = Get-Content "$PSScriptRoot\Games\$Game\Data\GameExploits.json" | ConvertFrom-Json -AsHashtable
 $GameState = "Running"
 $StartTime = Get-Date
 
@@ -183,6 +185,7 @@ while ($GameState -ne "Quit") {
     }
     
     Invoke-AchievementCheck
+    Invoke-ExploitCheck
 }
 #endregion main game.
 
