@@ -2,9 +2,9 @@
 
 So you want to add a game to the PowerSpel platform? Very nice! I like you already. Here's some info on what you need and what you can do. While you could fork the repository and keep the game to yourself, please share your games with me. Send me a PR and I will give it a place in this repository. How cool would it be, if this thing grows and multiple creators work together to add different games to this?
 
-To start, find the folder ./Games/_TemplateGame. Create a copy of that and rename it to represent your game. There's a basic start to a game in that folder. From there, you are up to create what you want.
+To start, find the folder ./Games/_TemplateGame. Create a copy of that and rename it to represent your game. There's a basic start to a game in that folder. From there, it's up to you to create whatever you want.
 
-## prerequisites
+## Prerequisites
 
 ### Mandatory
 

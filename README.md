@@ -14,8 +14,8 @@ Simply clone the repository and start `Start-PowerSpel.ps1`. You can add the par
 
 ### Terminal settings
 
-The game is played at terminal settings of at least 128 characters wide and 57 lines high. Smaller than that will mess up the game. Bigger is possible. but doesn't bring anyting extra.
+The game is played at terminal settings of at least 130 characters wide and 57 lines high. Smaller than that will mess up the game visually. Bigger is possible. but doesn't bring anyting extra.
 
 ## Contributing to the project
 
-See [CONTRIBUTING.md](./CONTRIBUTING.md) in the repository root folder.
+See [CONTRIBUTING.md](./CONTRIBUTING.md).
