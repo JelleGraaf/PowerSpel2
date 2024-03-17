@@ -57,7 +57,6 @@ function New-Move {
     }
 
     # Check to see if there is a locked door in the Direction and if the player inventory contains the correct key.
-#TODO DOORTESTEN
     $LockedDoor = $World."$($State.CurrentRoom)".Exits.$DirectionFull.LockedDoor
     $InventoryKeysThatFitThisLock = $State.Inventory | Where-Object { $World."$($State.CurrentRoom)".Exits.$DirectionFull.Key -contains $_}
     if ( $LockedDoor -eq "true" -and ($InventoryKeysThatFitThisLock).Count -eq 0) {
