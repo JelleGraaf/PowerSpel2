@@ -177,6 +177,10 @@ while ($GameState -ne "Quit") {
         # Show achievement overview.
         Show-Achievements
     }
+    elseif ($PlayerInput -eq "help") {
+        # Show help overview.
+        Show-Help
+    }
     elseif ($PlayerInput -eq "quit") {
         # Exit command.
         $GameState = "quit"
