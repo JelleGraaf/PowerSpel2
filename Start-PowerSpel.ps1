@@ -98,8 +98,13 @@ $State = @{
 $GameAchievements = Get-Content ".\Games\$Game\Data\GameAchievements.json" | ConvertFrom-Json -AsHashtable
 $GameExploits = Get-Content ".\Games\$Game\Data\GameExploits.json" | ConvertFrom-Json -AsHashtable
 #>
-$GameAchievements = Get-Content "$PSScriptRoot\Games\$Game\Data\GameAchievements.json" | ConvertFrom-Json -AsHashtable
-$GameExploits = Get-Content "$PSScriptRoot\Games\$Game\Data\GameExploits.json" | ConvertFrom-Json -AsHashtable
+if (Test-Path "$PSScriptRoot\Games\$Game\Data\GameAchievements.json") {
+    $GameAchievements = Get-Content "$PSScriptRoot\Games\$Game\Data\GameAchievements.json" | ConvertFrom-Json -AsHashtable
+}
+if (Test-Path "$PSScriptRoot\Games\$Game\Data\GameExploits.json") {
+    $GameExploits = Get-Content "$PSScriptRoot\Games\$Game\Data\GameExploits.json" | ConvertFrom-Json -AsHashtable
+}
+
 $GameState = "Running"
 $StartTime = Get-Date
 
