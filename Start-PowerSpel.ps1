@@ -30,6 +30,8 @@ param (
     [string]$Map
 )
 
+$ErrorActionPreference = "inquire"
+
 #########################################
 #region INITIALIZATION                  #
 #########################################
@@ -189,8 +191,8 @@ while ($GameState -ne "Quit") {
         $ActionMessage = "Invalid input, try again."
     }
     
-    Invoke-AchievementCheck
-    Invoke-ExploitCheck
+    # Execute game-specific functions
+    Invoke-GameFunctions
 }
 #endregion main game.
 
