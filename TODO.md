@@ -2,7 +2,6 @@
 
 - Add the Pentest game
   - Add exploitations
-    - Find a yellow key card
     - Find a red key card
     - Find a black key card
     - Sabotage the air conditioning
