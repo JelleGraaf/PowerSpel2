@@ -10,5 +10,8 @@
   - Add achievements
   - Create all interactables
   - Add endings
+    - smoke
+    - evacuation
+    - caught
   - Set starting position to real value
 - Clean up (remove todo and other comments)
