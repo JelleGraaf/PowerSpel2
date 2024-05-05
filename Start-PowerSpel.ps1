@@ -183,6 +183,7 @@ while ($GameState -ne "Quit") {
     }
     elseif ($PlayerInput -eq "quit") {
         # Exit command.
+        $EndScenario = "Default"
         $GameState = "quit"
     }
     elseif ($PlayerInput -eq "idclip") {

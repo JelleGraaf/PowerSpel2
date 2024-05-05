@@ -10,4 +10,5 @@
   - Add achievements
   - Create all interactables
   - Add endings
-  - Set starting position to real valua
+  - Set starting position to real value
+- Clean up (remove todo and other comments)
