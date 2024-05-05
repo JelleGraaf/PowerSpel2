@@ -10,3 +10,4 @@
   - Add achievements
   - Create all interactables
   - Add endings
+  - Set starting position to real valua

@@ -21,7 +21,9 @@ function Invoke-CompleteAchievement {
         $AchievementName
     )
 
-    $State.Achievements += $AchievementName
-    $Script:CompletedAchievement = $AchievementName
-    $GameAchievements.Remove($AchievementName)
+    if ($State.Achievements -notcontains $AchievementName) {
+        $State.Achievements += $AchievementName
+        $Script:CompletedAchievement = $AchievementName
+        $GameAchievements.Remove($AchievementName)
+    }
 }
