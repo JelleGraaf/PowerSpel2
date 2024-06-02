@@ -90,11 +90,12 @@ foreach ($Room in $Rooms) {
 }
 
 $State = @{
-    CurrentRoom  = $StartRoom
-    Inventory    = @() # Don't fill this with text longer than the respective header column, or it will mess up the visualization.
-    Exploits     = @() # Don't fill this with text longer than the respective header column, or it will mess up the visualization.
-    Achievements = @() # Don't fill this with text longer than the respective header column, or it will mess up the visualization.
-    RoomsVisited = @($StartRoom)
+    CurrentRoom              = $StartRoom
+    Inventory                = @() # Don't fill this with text longer than the respective header column, or it will mess up the visualization.
+    Exploits                 = @() # Don't fill this with text longer than the respective header column, or it will mess up the visualization.
+    Achievements             = @() # Don't fill this with text longer than the respective header column, or it will mess up the visualization.
+    RoomsVisited             = @($StartRoom)
+    WalkAlongSequenceCounter = 0
 }
 <# LOCAL DEV
 $GameAchievements = Get-Content ".\Games\$Game\Data\GameAchievements.json" | ConvertFrom-Json -AsHashtable
@@ -139,6 +140,11 @@ while ($GameState -ne "Quit") {
     
     # Write extra room options to screen, if any.
     Show-RoomOptions -RoomObjects $RoomObjects
+
+    # Check for conditions for walking along with an employee, if player doesn't have a key card.
+    if ($State.Inventory -notcontains "A yellow key Card" -and $State.Inventory -notcontains "A red key Card" -and $State.Inventory -notcontains "A black key Card") {
+        Invoke-WalkAlongSequence
+    }
 
     # Read player action.
     $PlayerInput = Read-Host "What would you like to do?"
@@ -196,7 +202,7 @@ while ($GameState -ne "Quit") {
         $ActionMessage = "Invalid input, try again."
     }
     
-    # Execute game-specific functions
+    # Execute game-specific functions.
     Invoke-GameFunctions
 }
 #endregion main game.
