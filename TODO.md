@@ -15,4 +15,3 @@
     - caught
   - Set starting position to real value
 - Clean up (remove todo and other comments)
-- Bugfix: the first time you walk along with the employee, moving south afterwards crashes the game.

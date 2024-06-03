@@ -89,7 +89,6 @@ function New-Move {
         if ($State.RoomsVisited -notcontains $DestinationRoom) {
             $State.RoomsVisited += $DestinationRoom
         }
-        
     }
     else {
         $Script:ActionMessage = "You can't go that way. Try again."
