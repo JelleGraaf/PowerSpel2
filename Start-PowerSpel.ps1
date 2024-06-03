@@ -77,12 +77,12 @@ $Console.ForegroundColor = "White"
 $Console.BackgroundColor = "Black"
 
 # Import rooms.
-$Rooms = Get-ChildItem -Path "$PSScriptRoot\Games\$Game\Rooms\" -File -Recurse | Where-Object { $_.Name -ne "_RoomTemplate.json" }
-
-# Prepare variables.
 <# LOCAL DEV
 $Rooms = Get-ChildItem -Path "C:\git\PowerSpel2\Games\$Game\Rooms\" -File -Recurse | Where-Object {$_.Name -ne "_RoomTemplate.json"}
 #>
+$Rooms = Get-ChildItem -Path "$PSScriptRoot\Games\$Game\Rooms\" -File -Recurse | Where-Object { $_.Name -ne "_RoomTemplate.json" }
+
+# Prepare variables.
 $World = @{}
 foreach ($Room in $Rooms) {
     $RoomCoordinates = $Room.Name.Substring(4).Split('.')[0]
