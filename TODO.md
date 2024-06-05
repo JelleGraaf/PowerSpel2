@@ -5,9 +5,13 @@
     - Find a black key card
     - Sabotage the air conditioning
     - Steal a personnel file
-    - Get access to the locked server room
+    - Finish Get access to the locked server room quest line:
+      - Add I.I. laptop interactable
+      - Remove options from menu when executed
     - Get access to a PC
   - Add achievements
+    - Procrastinator (walk x rooms before entering the building)
+    - Thorough investigator (visit every room in the game)
   - Create all interactables
   - Add endings
     - smoke
