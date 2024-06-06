@@ -64,6 +64,7 @@ function New-Move {
             $Script:ActionMessage = "You use your cheat to clip through the door."
             # Change currentroom to the new room
             $State.CurrentRoom = $DestinationRoom
+            $State.Steps++
             # Add the new room to the State, for statistics.
             if ($State.RoomsVisited -notcontains $DestinationRoom) {
                 $State.RoomsVisited += $DestinationRoom
@@ -85,6 +86,7 @@ function New-Move {
             $Script:ActionMessage = $DefaultMoveMessage
         }
         $State.CurrentRoom = $DestinationRoom
+        $State.Steps++
         # Add the new room to the State, for statistics.
         if ($State.RoomsVisited -notcontains $DestinationRoom) {
             $State.RoomsVisited += $DestinationRoom

@@ -95,6 +95,7 @@ $State = @{
     Exploits                 = @() # Don't fill this with text longer than the respective header column, or it will mess up the visualization.
     Achievements             = @() # Don't fill this with text longer than the respective header column, or it will mess up the visualization.
     RoomsVisited             = @($StartRoom)
+    Steps                    = 0
     WalkAlongSequenceCounter = 0
 }
 <# LOCAL DEV
