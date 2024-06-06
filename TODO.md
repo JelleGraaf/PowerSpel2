@@ -10,12 +10,12 @@
       - Remove options from menu when executed
     - Get access to a PC
   - Add achievements
-    - Procrastinator (walk x rooms before entering the building)
-    - Thorough investigator (visit every room in the game)
+    - Thorough investigator (visit every room in the game) -> Needs fix
   - Create all interactables
   - Add endings
     - smoke
     - evacuation
     - caught
   - Set starting position to real value
+  - Add option to show the map of the game outside of the game (for dev purposes)
 - Clean up (remove todo and other comments)
