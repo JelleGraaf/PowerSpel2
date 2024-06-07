@@ -205,6 +205,9 @@ while ($GameState -ne "Quit") {
     
     # Execute game-specific functions.
     Invoke-GameFunctions
+
+    # Check if the game should end because certain conditions are met
+    Invoke-EndingCheck
 }
 #endregion main game.
 
