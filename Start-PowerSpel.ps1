@@ -188,10 +188,10 @@ while ($GameState -ne "Quit") {
         # Show help overview.
         Show-Help
     }
-    elseif ($PlayerInput -eq "quit") {
+    elseif ($PlayerInput -eq "Quit") {
         # Exit command.
         $EndScenario = "Default"
-        $GameState = "quit"
+        $GameState = "Quit"
     }
     elseif ($PlayerInput -eq "idclip") {
         # Cheat code 

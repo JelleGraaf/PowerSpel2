@@ -5,10 +5,6 @@
     - Find a black key card
     - Sabotage the air conditioning
     - Steal a personnel file
-    - Finish Get access to the locked server room quest line:
-      - Add I.I. laptop interactable
-      - Remove options from menu when executed
-    - Get access to a PC
   - Add achievements
     - Thorough investigator (visit every room in the game) -> Needs fix
   - Create all interactables
@@ -18,4 +14,5 @@
     - caught
   - Set starting position to real value
   - Add option to show the map of the game outside of the game (for dev purposes)
-- Clean up (remove todo and other comments)
+  - Add a final score
+- Clean up (remove todo, local dev, and other comments)
