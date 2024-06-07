@@ -5,9 +5,6 @@
     - Find a black key card
     - Sabotage the air conditioning
     - Steal a personnel file
-  - Add achievements
-    - Thorough investigator (visit every room in the game) -> Needs fix
-  - Create all interactables
   - Add endings
     - smoke
     - evacuation
