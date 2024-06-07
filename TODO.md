@@ -2,7 +2,6 @@
 
 - Add the Pentest game
   - Add exploitations
-    - Find a black key card
     - Sabotage the air conditioning
     - Steal a personnel file
   - Add endings
