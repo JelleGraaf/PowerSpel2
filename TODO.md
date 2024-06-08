@@ -2,10 +2,8 @@
 
 - Add the Pentest game
   - Add exploitations
-    - Sabotage the air conditioning
     - Steal a personnel file
-  - Add endings
-    - smoke
+  - Add elevator controls
   - Set starting position to real value
   - Add option to show the map of the game outside of the game (for dev purposes)
   - Add a final score
