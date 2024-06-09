@@ -13,6 +13,7 @@
     - Static (puts the current floor on the map view and lets the player marker walk around in that).
     - Dynamic (puts the player marker in the middle of the map view and draws the map around it).
     - Off (turns off the map entirely).
+    The map style is set by the game in Initialize-Game. If the Map parameter is used, it overwrites the game's default.
 
 .EXAMPLE
     ps> Start-PowerSpel.ps1 -Game Tutorial
