@@ -6,7 +6,10 @@
     Starts a game of PowerSpel. Walk through a world in this text-based adventure, styled after the Multi-User Dungeons that were popular in the nineties.
 
 .PARAMETER Game
-    Choose the game mode here. Valid options: Tutorial, Pentest. Defaults to Pentest, the original PowerSpel.
+    Choose the game mode here. Valid options:
+    - Tutorial (get to know the game and its controls)
+    - Pentest (the original PowerSpel game)
+    Defaults to the tutorial for easy starting.
 
 .PARAMETER Map
     Choose the map type, or turn it off. Valid options: 
@@ -17,6 +20,10 @@
 
 .EXAMPLE
     ps> Start-PowerSpel.ps1 -Game Tutorial
+    Starts the tutorial of PowerSpel
+
+    ps> Start-PowerSpel.ps1 -Game Pentest -Map Dynamic
+    Starts a game of PowerSpel Pentest, forcing the map to be dynamic.
 
 .NOTES
     Written by:       Jelle the Graaf (The Netherlands).
