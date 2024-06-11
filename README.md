@@ -3,10 +3,7 @@
 This repository contains my platform PowerSpel 2. It is an iteration on [PowerSpel (1)](https://github.com/JelleGraaf/PowerSpel), but with six years of experience under my belt.  
 In 2017, I created PowerSpel as a means to teach myself the basics of PowerShell. Now, I wanted to give it another go. I have rebuilt PowerSpel 1 from the ground up, modified the Pentest game to the new building layout and made it modular (PowerSpel 2 as a platform, Pentest and the tutorial as games that run on the platform). That way, the road is paved for future games to be added.
 
-The game is work in progress, until this readme says otherwise.
-
-**UPDATE 21-01-2024:** The tutorial game is finished, it's playable now. Use `./Start-PowerSpel.ps1 -Game Tutorial`.
-**UPDATE 24-01-2024:** The documentation is finished.
+The game is now of version 1+. For details on the versions, look at [VERSION.md](./VERSION.md).
 
 ## Playing the game
 
