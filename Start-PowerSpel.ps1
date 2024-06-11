@@ -135,11 +135,6 @@ while ($GameState -ne "Quit") {
     # Write extra room options to screen, if any.
     Show-RoomOptions -RoomObjects $RoomObjects
 
-    # Check for conditions for walking along with an employee, if player doesn't have a key card.
-    if ($State.Inventory -notcontains "A yellow key Card" -and $State.Inventory -notcontains "A red key Card" -and $State.Inventory -notcontains "A black key Card") {
-        Invoke-WalkAlongSequence
-    }
-
     # Read player action.
     $PlayerInput = Read-Host "What would you like to do?"
     
