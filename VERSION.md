@@ -1,7 +1,7 @@
 # Product versions
 
-| Version | Changes         |
-| ------- | --------------- |
-| 1.0.0   | Initial version |
-|         |                 |
-|         |                 |
+| Version | Date       | Changes         |
+| ------- | ---------- | --------------- |
+| 1.0.0   | 2024-06-11 | Initial version |
+|         |            |                 |
+|         |            |                 |
