@@ -1,4 +1,4 @@
-# Adding a game
+# Adding a game!
 
 So you want to add a game to the PowerSpel platform? Very nice! I like you already. Here's some info on what you need and what you can do. While you could fork the repository and keep the game to yourself, please share your games with me. Send me a PR and I will give it a place in this repository. How cool would it be, if this thing grows and multiple creators work together to add different games to this?
 
