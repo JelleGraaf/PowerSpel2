@@ -38,27 +38,18 @@ $ErrorActionPreference = "inquire"
 #########################################
 
 # Import general helper functions.
-<# LOCAL DEV
-$GeneralHelpers = Get-ChildItem -Path ./Helpers
-#>
 $GeneralHelpers = Get-ChildItem -Path $PSScriptRoot\Helpers\
 foreach ($GeneralHelper in $GeneralHelpers) {
     . $GeneralHelper.fullname
 }
 
 # Import game helper functions.
-<# LOCAL DEV
-$GameHelpers = Get-ChildItem -Path .\Games\$Game\Helpers -File
-#>
 $GameHelpers = Get-ChildItem -Path $PSScriptRoot\Games\$Game\Helpers -File
 foreach ($GameHelper in $GameHelpers) {
     . $GameHelper.fullname -force
 }
 
 # Import game interactables functions.
-<# LOCAL DEV
-$Interactables = Get-ChildItem -Path .\Games\$Game\Interactables -File -Filter "*.ps1"
-#>
 $Interactables = Get-ChildItem -Path $PSScriptRoot\Games\$Game\Interactables -File -Filter "*.ps1"
 foreach ($Interactable in $Interactables) {
     . $Interactable.fullname
@@ -78,9 +69,6 @@ $Console.ForegroundColor = "White"
 $Console.BackgroundColor = "Black"
 
 # Import rooms.
-<# LOCAL DEV
-$Rooms = Get-ChildItem -Path "C:\git\PowerSpel2\Games\$Game\Rooms\" -File -Recurse | Where-Object {$_.Name -ne "_RoomTemplate.json"}
-#>
 $Rooms = Get-ChildItem -Path "$PSScriptRoot\Games\$Game\Rooms\" -File -Recurse | Where-Object { $_.Name -ne "_RoomTemplate.json" }
 
 # Prepare variables.
@@ -99,10 +87,7 @@ $State = @{
     Steps                    = 0
     WalkAlongSequenceCounter = 0
 }
-<# LOCAL DEV
-$GameAchievements = Get-Content ".\Games\$Game\Data\GameAchievements.json" | ConvertFrom-Json -AsHashtable
-$GameExploits = Get-Content ".\Games\$Game\Data\GameExploits.json" | ConvertFrom-Json -AsHashtable
-#>
+
 if (Test-Path "$PSScriptRoot\Games\$Game\Data\GameAchievements.json") {
     $GameAchievements = Get-Content "$PSScriptRoot\Games\$Game\Data\GameAchievements.json" | ConvertFrom-Json -AsHashtable
 }
